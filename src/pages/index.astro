@@ -1,16 +1,31 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+
+
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero/hero-peach-orchard.jpg';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section class="max-w-5xl mx-auto px-4 py-10">
+    <div class="grid gap-8 md:grid-cols-2 items-center">
+      <div>
+        <h1 class="text-4xl font-bold mb-4">
+          拉拉山水蜜桃達人
+        </h1>
+        <p class="mb-4">
+          產地直送、當季限定，用產地日記告訴你每一顆水蜜桃的故事。
+        </p>
+      </div>
+      <div>
+        <Image
+          src={heroImage}
+          alt="拉拉山水蜜桃果園景色"
+          loading="eager"
+          format="avif"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

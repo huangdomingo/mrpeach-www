@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "拉拉山水蜜桃禮盒 5kg",
+  image: "https://www.mrpeach.com.tw/images/products/lalashan-white-peach-5kg.jpg",
+  description: "高海拔拉拉山產地直送，嚴選香甜白桃，約 18–20 顆。",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "TWD",
+    price: "1680",
+    availability: "https://schema.org/PreOrder",
+    url: "https://www.mrpeach.com.tw/products/lalashan-white-peach-5kg"
+  }
+};
+---
+
+<BaseLayout title="商品導購｜拉拉山水蜜桃達人">
+  <script type="application/ld+json">
+    {JSON.stringify(productJsonLd)}
+  </script>
+
+  {/* 這裡再排版商品導購列表 */}
+</BaseLayout>

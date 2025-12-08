@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const faqs = (await getCollection('faq')).sort(
+  (a, b) => (a.data.order ?? 999) - (b.data.order ?? 999)
+);
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.data.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.data.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout title="常見問題｜拉拉山水蜜桃達人">
+  <script type="application/ld+json">
+    {JSON.stringify(faqJsonLd)}
+  </script>
+
+  {/* FAQ 清單 HTML 如前 */}
+</BaseLayout>
+

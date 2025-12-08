@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('diary', ({ data }) => true);
+// 可以之後再用 data.date 排序
+---
+
+<BaseLayout title="產地日記｜拉拉山水蜜桃達人">
+  <section class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-6">產地日記</h1>
+
+    <ul class="space-y-6">
+      {posts.map((post) => (
+        <li>
+          <a href={`/diary/${post.slug}`}>
+            <h2 class="text-2xl font-semibold">{post.data.title}</h2>
+            <p class="text-sm text-slate-500 mt-1">{post.data.date}</p>
+            <p class="mt-2">{post.data.excerpt}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

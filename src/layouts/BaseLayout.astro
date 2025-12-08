@@ -1,0 +1,42 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = '拉拉山水蜜桃達人｜官方網站',
+  description = '產地直送拉拉山水蜜桃，真實果園故事與安心宅配服務。',
+} = Astro.props;
+---
+
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* 之後可以在這裡放 GA4、全站結構化資料共用區塊 */}
+  </head>
+  <body class="min-h-screen bg-white text-slate-900">
+    <header>
+      <nav>
+        {/* 簡單先放文字導覽，之後再美化 */}
+        <a href="/">首頁</a>
+        <a href="/about-orchard">關於果園</a>
+        <a href="/products">商品導購</a>
+        <a href="/diary">產地日記</a>
+        <a href="/faq">常見問題</a>
+        <a href="/contact">聯絡我們</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>© {new Date().getFullYear()} 拉拉山水蜜桃達人</p>
+    </footer>
+  </body>
+</html>
