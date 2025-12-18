@@ -1,4 +1,5 @@
 ---
+// 檔案位置：src/pages/index.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/hero/hero-peach-orchard.jpg";
@@ -43,7 +44,7 @@ const pageDescription =
 
         <div class="relative lg:col-start-2">
           <div
-            class="relative rounded-2xl bg-slate-100 shadow-xl overflow-hidden aspect-[4/3] transform lg:rotate-2 lg:hover:rotate-0 transition-transform duration-500"
+            class="relative rounded-2xl bg-slate-100 shadow-xl overflow-hidden aspect-[4/3] transform rotate-0 lg:rotate-2 lg:hover:rotate-0 transition-transform duration-500"
           >
             <Image
               src={heroImage}
@@ -54,6 +55,7 @@ const pageDescription =
               width={800}
             />
           </div>
+
           <div
             class="absolute -z-10 top-4 right-0 lg:-right-4 w-full h-full rounded-2xl bg-pink-100"
           >
@@ -91,7 +93,6 @@ const pageDescription =
             公尺以上，日夜溫差大，讓水蜜桃更能累積糖分與香氣。
           </p>
         </div>
-
         <div
           class="p-6 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow"
         >
@@ -105,7 +106,6 @@ const pageDescription =
             當日清晨現採，下午包裝出貨。堅持不噴灑催熟劑，讓您收到最新鮮的拉拉山水蜜桃。
           </p>
         </div>
-
         <div
           class="p-6 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow"
         >
