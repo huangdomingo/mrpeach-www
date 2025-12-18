@@ -1,125 +1,27 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
-import heroImage from "../assets/hero/hero-peach-orchard.jpg";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-// 設定針對首頁優化的 SEO 資訊
-const pageTitle = "拉拉山水蜜桃達人｜產地直送 & 預約採水蜜桃體驗";
-const pageDescription =
-  "想吃最正宗的拉拉山水蜜桃嗎？達人果園提供當季現採水蜜桃產地直送服務，產季期間更開放拉拉山採水蜜桃體驗行程。立即預約，品嚐高海拔的甜蜜滋味。";
+const posts = await getCollection("diary", ({ data }) => true);
+// 可以之後再用 data.date 排序
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="relative overflow-hidden bg-slate-50 py-16 sm:py-24 lg:py-32">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
-        <div class="max-w-2xl">
-          <h1
-            class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl mb-6"
-          >
-            品嚐來自雲端的<br class="hidden lg:block" />
-            <span class="text-pink-600">拉拉山水蜜桃</span>
-          </h1>
-          <p class="mt-4 text-lg text-slate-600 mb-8 leading-relaxed">
-            不用出門，就能吃到最新鮮的拉拉山水蜜桃！我們堅持自然農法，每一顆都飽滿多汁。產季限定開放<span
-              class="font-bold text-slate-800">採水蜜桃</span
-            >體驗，歡迎全家大小一起來山上作客。
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <a
-              href="/products"
-              class="inline-flex items-center justify-center rounded-full bg-pink-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-pink-700 transition-all focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
-            >
-              立即訂購
+<BaseLayout title="產地日記｜拉拉山水蜜桃達人">
+  <section class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-6">產地日記</h1>
+
+    <ul class="space-y-6">
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/diary/${post.slug}`}>
+              <h2 class="text-2xl font-semibold">{post.data.title}</h2>
+              <p class="text-sm text-slate-500 mt-1">{post.data.date}</p>
+              <p class="mt-2">{post.data.excerpt}</p>
             </a>
-            <a
-              href="/about-orchard"
-              class="inline-flex items-center justify-center rounded-full bg-white border border-slate-300 px-8 py-3 text-base font-medium text-slate-700 shadow-sm hover:bg-slate-50 transition-all"
-            >
-              認識果園
-            </a>
-          </div>
-        </div>
-
-        <div class="relative lg:col-start-2">
-          <div
-            class="relative rounded-2xl bg-slate-100 shadow-xl overflow-hidden aspect-[4/3] transform rotate-2 hover:rotate-0 transition-transform duration-500"
-          >
-            <Image
-              src={heroImage}
-              alt="拉拉山水蜜桃果園結實累累的景色"
-              class="object-cover w-full h-full"
-              loading="eager"
-              format="avif"
-              width={800}
-            />
-          </div>
-          <div
-            class="absolute -z-10 top-4 -right-4 w-full h-full rounded-2xl bg-pink-100"
-          >
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-white">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">
-          為什麼選擇我們的水蜜桃？
-        </h2>
-        <p class="mt-4 text-lg text-slate-600">
-          不僅是水果，更是我們對土地的承諾。無論是宅配還是親自來<span
-            class="text-pink-600 font-bold">拉拉山採水蜜桃</span
-          >，我們都給您最好的。
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        <div
-          class="p-6 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow"
-        >
-          <div
-            class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
-          >
-            🏔️
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">高海拔種植</h3>
-          <p class="text-slate-600">
-            位於拉拉山海拔 1,500
-            公尺以上，日夜溫差大，讓水蜜桃更能累積糖分與香氣。
-          </p>
-        </div>
-
-        <div
-          class="p-6 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow"
-        >
-          <div
-            class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
-          >
-            🚚
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">產地直送</h3>
-          <p class="text-slate-600">
-            當日清晨現採，下午包裝出貨。堅持不噴灑催熟劑，讓您收到最新鮮的拉拉山水蜜桃。
-          </p>
-        </div>
-
-        <div
-          class="p-6 rounded-2xl bg-slate-50 hover:shadow-lg transition-shadow"
-        >
-          <div
-            class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"
-          >
-            👨‍🌾
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">採水蜜桃體驗</h3>
-          <p class="text-slate-600">
-            每年 6-8 月產季開放預約，親手摘下樹頭鮮果，體驗一日果農的樂趣。
-          </p>
-        </div>
-      </div>
-    </div>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </BaseLayout>
