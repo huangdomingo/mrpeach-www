@@ -1,17 +1,18 @@
 ---
-// 檔案位置：src/layouts/BaseLayout.astro
+// 引用原有的 interface 並擴充
 interface Props {
   title?: string;
   description?: string;
-  image?: string;
+  image?: string; // 新增圖片欄位，讓分享連結有圖片
 }
 
 const {
-  title = "拉拉山水蜜桃達人｜產地直送與採果體驗",
-  description = "專營拉拉山水蜜桃產地直送及拉拉山採水蜜桃體驗。位於高海拔的達人果園，提供當季最新鮮甜美的水蜜桃。",
+  title = "拉拉山水蜜桃達人｜產地直送與採果體驗", // [優化] 預設標題加入關鍵字「採果」
+  description = "專營拉拉山水蜜桃產地直送及拉拉山採水蜜桃體驗。位於高海拔的達人果園，提供當季最新鮮甜美的水蜜桃，讓您品嚐真實的產地風味。", // [優化] 預設描述填入所有關鍵字
   image = "/favicon.svg",
 } = Astro.props;
 
+// 取得目前的網址，用於 canonical URL
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -20,6 +21,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
@@ -31,7 +33,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
 
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
     <style>
+      /* 確保全站字體平滑 */
       html {
         scroll-behavior: smooth;
       }
@@ -50,6 +58,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         >
           <span class="text-pink-500">🍑</span> 拉拉山水蜜桃達人
         </a>
+
         <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
           <a href="/" class="hover:text-pink-600 transition-colors">首頁</a>
           <a href="/about-orchard" class="hover:text-pink-600 transition-colors"
@@ -61,10 +70,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <a href="/diary" class="hover:text-pink-600 transition-colors"
             >產地日記</a
           >
+          <a href="/faq" class="hover:text-pink-600 transition-colors"
+            >常見問題</a
+          >
           <a href="/contact" class="hover:text-pink-600 transition-colors"
             >聯絡我們</a
           >
         </nav>
+
+        <div class="md:hidden">
+          {/* 這裡之後可以放 Hamburger Menu */}
+        </div>
       </div>
     </header>
 
@@ -73,10 +89,46 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </main>
 
     <footer class="bg-slate-900 text-slate-300 py-12">
-      <div class="mx-auto max-w-7xl px-4 text-center text-sm">
-        <p>
-          © {new Date().getFullYear()} 拉拉山水蜜桃達人. All rights reserved.
-        </p>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-white font-bold text-lg mb-4">拉拉山水蜜桃達人</h3>
+            <p class="text-sm leading-relaxed">
+              致力於種植最高品質的拉拉山水蜜桃，堅持草生栽培，產地直送到您手中。也歡迎產季期間預約採水蜜桃體驗。
+            </p>
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg mb-4">快速連結</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="/products"
+                  class="hover:text-pink-400 transition-colors">購買水蜜桃</a>
+              </li>
+              <li>
+                <a
+                  href="/about-orchard"
+                  class="hover:text-pink-400 transition-colors">果園介紹</a>
+              </li>
+              <li>
+                <a href="/faq" class="hover:text-pink-400 transition-colors"
+                  >運送政策</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-lg mb-4">聯絡資訊</h3>
+            <p class="text-sm">桃園市復興區華陵里...</p>
+            {/* 可以在這裡加 icon */}
+          </div>
+        </div>
+        <div
+          class="mt-12 border-t border-slate-800 pt-8 text-center text-sm text-slate-500"
+        >
+          <p>
+            © {new Date().getFullYear()} 拉拉山水蜜桃達人. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   </body>
