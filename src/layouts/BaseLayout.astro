@@ -1,5 +1,7 @@
 ---
 // src/layouts/BaseLayout.astro
+import "../styles/global.css"; // [優化] 顯式引入全域樣式
+
 interface Props {
   title?: string;
   description?: string;
@@ -11,58 +13,79 @@ const {
 } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="zh-Hant" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=5"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body
-    class="min-h-screen bg-slate-50 text-slate-800 flex flex-col overflow-x-hidden"
+    class="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col overflow-x-hidden"
   >
-    <header class="sticky top-0 z-50 bg-white shadow-sm">
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
-      >
-        <a
-          href="/"
-          class="text-xl font-bold text-pink-600 flex items-center gap-1"
-        >
-          🍑 <span class="text-slate-900">拉拉山水蜜桃達人</span>
-        </a>
-        <nav class="hidden md:flex gap-6 text-sm font-medium">
-          <a href="/about-orchard" class="hover:text-pink-600 transition"
-            >關於果園</a
+    <nav class="bg-white shadow-md fixed w-full z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <span class="text-2xl font-bold text-pink-600 tracking-wider"
+              >🍑 拉拉山水蜜桃達人</span
+            >
+          </div>
+          <div
+            class="hidden md:flex space-x-8 items-center text-sm font-medium"
           >
-          <a href="/products" class="hover:text-pink-600 transition">商品導購</a
-          >
-          <a href="/diary" class="hover:text-pink-600 transition">產地日記</a>
-          <a href="/faq" class="hover:text-pink-600 transition">常見問題</a>
-          <a href="/contact" class="hover:text-pink-600 transition">聯絡我們</a>
-        </nav>
+            <a
+              href="/about-orchard"
+              class="text-gray-600 hover:text-pink-600 transition">關於果園</a
+            >
+            <a
+              href="/products"
+              class="text-gray-600 hover:text-pink-600 transition">商品導購</a
+            >
+            <a
+              href="/diary"
+              class="text-gray-600 hover:text-pink-600 transition">產地日記</a
+            >
+            <a href="/faq" class="text-gray-600 hover:text-pink-600 transition"
+              >常見問題</a
+            >
+            <a
+              href="/contact"
+              class="bg-pink-600 text-white px-4 py-2 rounded-md hover:bg-pink-700 transition"
+              >聯絡我們</a
+            >
+          </div>
+        </div>
       </div>
-    </header>
+    </nav>
 
-    <main class="flex-grow">
-      <slot />
-    </main>
+    <main class="flex-grow pt-16"><slot /></main>
 
-    <footer class="bg-slate-900 text-slate-400 py-12">
-      <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="mb-2">
-          © {new Date().getFullYear()} 拉拉山水蜜桃達人 - 高海拔安心栽培
-        </p>
-        <div class="flex justify-center gap-4 text-xs">
-          <a href="/privacy" class="hover:text-white">隱私權政策</a>
-          <a href="/terms" class="hover:text-white">服務條款</a>
+    <footer class="bg-gray-900 text-white py-12 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">拉拉山水蜜桃達人</h3>
+          <p class="text-gray-400">海拔 1500M 的甜蜜承諾，產地直送到家。</p>
+        </div>
+        <div class="md:text-right">
+          <p>
+            © {new Date().getFullYear()} 拉拉山水蜜桃達人. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   </body>
-  </html
 </html>
+
+<style is:global>
+  /* 參考 EZSTAY 的強效寬度控制 */
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
