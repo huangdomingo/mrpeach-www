@@ -3,7 +3,7 @@ title: "〈這一年的甘苦與看天吃飯的日子〉——拉拉山水蜜桃
 pubDate: 2025-12-01
 description: "老天雖然算給面子，但果園裡沒有一天可以鬆懈。阿義老闆分享這一年身為拉拉山果農的心情與耕作點滴。"
 author: "阿義"
-image: "../../assets/hero/hero-peach-orchard.jpg"
+image: "../../assets/products/lalashan-peach-orchard-bagged-peaches.png"
 ---
 
 如果要用一句話形容這一年，我會說：

@@ -1,5 +1,56 @@
 ---
+// src/pages/diary/[slug].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets"; // 引入 Astro 的圖片組件
+
 export async function getStaticPaths() {
-  return []; // 回傳空陣列，代表目前沒有日記頁面要產生
+  const posts = await getCollection("diary");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
+
+const { post } = Astro.props;
+const { Content } = await render(post);
 ---
+
+<BaseLayout title={`${post.data.title}｜產地日記`}>
+  <article class="max-w-4xl mx-auto px-4 py-16">
+    {
+      post.data.image && (
+        <div class="mb-10 rounded-3xl overflow-hidden shadow-xl">
+          <Image
+            src={post.data.image}
+            alt={post.data.title}
+            class="w-full h-[400px] object-cover"
+          />
+        </div>
+      )
+    }
+
+    <h1 class="text-4xl font-bold mb-4 text-slate-900 leading-tight">
+      {post.data.title}
+    </h1>
+
+    <div
+      class="flex items-center gap-4 text-slate-500 mb-10 pb-6 border-b border-slate-100"
+    >
+      <time>{post.data.pubDate.toLocaleDateString("zh-TW")}</time>
+      <span>作者：{post.data.author || "阿義老闆"}</span>
+    </div>
+
+    <div
+      class="prose prose-pink prose-lg max-w-none text-slate-700 leading-relaxed"
+    >
+      <Content />
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-slate-100">
+      <a href="/diary" class="text-pink-600 font-bold hover:underline"
+        >← 回到日記列表</a
+      >
+    </div>
+  </article>
+</BaseLayout>

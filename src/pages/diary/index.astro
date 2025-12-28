@@ -2,26 +2,49 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const posts = await getCollection("diary", ({ data }) => true);
-// 可以之後再用 data.date 排序
+// 取得日記並依照日期排序
+const posts = (await getCollection("diary")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <BaseLayout title="產地日記｜拉拉山水蜜桃達人">
-  <section class="max-w-3xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold mb-6">產地日記</h1>
+  <section class="bg-pink-50 py-12 text-center">
+    <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">產地日記</h1>
+    <p class="text-slate-600">紀錄果園裡的每一分努力與大地的回報</p>
+  </section>
 
-    <ul class="space-y-6">
+  <section class="max-w-5xl mx-auto px-4 py-16">
+    <div class="grid gap-8 md:grid-cols-2">
       {
         posts.map((post) => (
-          <li>
-            <a href={`/diary/${post.slug}`}>
-              <h2 class="text-2xl font-semibold">{post.data.title}</h2>
-              <p class="text-sm text-slate-500 mt-1">{post.data.date}</p>
-              <p class="mt-2">{post.data.excerpt}</p>
+          <article class="group bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+            <a
+              href={`/diary/${post.slug}`}
+              class="block h-full p-8 flex flex-col"
+            >
+              <div class="flex items-center gap-2 text-pink-600 text-sm font-bold mb-4">
+                <span class="bg-pink-100 px-3 py-1 rounded-full">
+                  {post.data.pubDate.toLocaleDateString("zh-TW")}
+                </span>
+                <span>• 阿義老闆分享</span>
+              </div>
+              <h2 class="text-xl font-bold text-slate-900 group-hover:text-pink-600 mb-4">
+                {post.data.title}
+              </h2>
+              <p class="text-slate-600 line-clamp-3 text-sm mb-6">
+                {post.data.description}
+              </p>
+              <div class="mt-auto flex items-center text-pink-600 font-bold text-sm">
+                閱讀全文{" "}
+                <span class="ml-2 group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
+              </div>
             </a>
-          </li>
+          </article>
         ))
       }
-    </ul>
+    </div>
   </section>
 </BaseLayout>
