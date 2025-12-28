@@ -1,0 +1,182 @@
+---
+// src/pages/contact.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "聯絡我們｜水蜜桃達人農場 - 桃園拉拉山產地直送";
+const pageDescription =
+    "歡迎聯繫拉拉山水蜜桃達人農場！提供電話訂購、Line 諮詢以及農場親自採果預約。內含詳細農場地址、營業時間與匯款資訊。";
+
+// 準備 Google 地圖嵌入連結 (已針對您的地址優化)
+const googleMapSrc =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.644158931557!2d121.4085444760592!3d24.68936307803831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34680998f86f7653%3A0x8e83b8b6c08e8b1!2zMzM25qGD5ZyS5biC5b6p6IiI5Y2A56We5pyo6LevMTEz6Jmf!5e0!3m2!1szh-TW!2stw!4v1704150000000!5m2!1szh-TW!2stw";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <section class="bg-pink-50 py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+                聯絡我們
+            </h1>
+            <p class="text-slate-600 max-w-2xl mx-auto">
+                不論是想詢問當季水蜜桃產況、預約採果體驗，或是確認宅配訂單，都歡迎透過以下方式聯繫阿義老闆。
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 lg:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div
+                            class="p-6 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm"
+                        >
+                            <div class="text-pink-600 text-2xl mb-3">📞</div>
+                            <h3 class="font-bold text-slate-900 mb-1">
+                                電話預約
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                最直接的聯繫方式
+                            </p>
+                            <a
+                                href="tel:0934195496"
+                                class="text-lg font-bold text-slate-900 hover:text-pink-600 transition"
+                                >0934-195-496</a
+                            >
+                            <p class="text-xs text-gray-400 mt-1">阿義老闆</p>
+                        </div>
+
+                        <div
+                            class="p-6 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm"
+                        >
+                            <div class="text-pink-600 text-2xl mb-3">⏰</div>
+                            <h3 class="font-bold text-slate-900 mb-1">
+                                營業時間
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3">
+                                產季期間天天服務
+                            </p>
+                            <p class="text-lg font-bold text-slate-900">
+                                08:00 ～ 20:00
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="p-6 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm"
+                    >
+                        <div class="text-pink-600 text-2xl mb-3">📍</div>
+                        <h3 class="font-bold text-slate-900 mb-1">農場地址</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            桃園縣復興鄉華鄰里10鄰神木路113號
+                        </p>
+                        <a
+                            href="https://www.google.com/maps/dir/?api=1&destination=桃園縣復興鄉華鄰里10鄰神木路113號"
+                            target="_blank"
+                            class="inline-flex items-center text-sm font-bold text-pink-600 hover:underline"
+                        >
+                            使用 Google 地圖規劃路線 →
+                        </a>
+                    </div>
+
+                    <div
+                        class="p-8 bg-green-50 rounded-2xl border border-green-100 shadow-sm flex flex-col items-center text-center"
+                    >
+                        <div class="bg-white p-3 rounded-full mb-4 shadow-sm">
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+                                alt="Line"
+                                class="w-10 h-10"
+                            />
+                        </div>
+                        <h3 class="text-xl font-bold text-green-800 mb-2">
+                            Line 線上諮詢
+                        </h3>
+                        <p class="text-green-700 text-sm mb-6">
+                            歡迎加入好友，即時詢問產地直送最新資訊
+                        </p>
+                        <a
+                            href="https://line.me/ti/p/~a0934195496"
+                            target="_blank"
+                            class="w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] text-white font-bold py-3 px-12 rounded-full transition shadow-lg flex items-center justify-center gap-2"
+                        >
+                            <span>一鍵加入 Line 好友</span>
+                        </a>
+                        <p class="text-xs text-green-600 mt-4 font-medium">
+                            ID: a0934195496
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="h-[400px] lg:h-auto rounded-3xl overflow-hidden shadow-inner border border-gray-100 bg-gray-100"
+                >
+                    <iframe
+                        src={googleMapSrc}
+                        class="w-full h-full border-0"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="水蜜桃達人農場 Google 地圖"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-3xl mx-auto px-4">
+            <div
+                class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200"
+            >
+                <div class="bg-slate-900 px-8 py-6 text-white text-center">
+                    <h2 class="text-2xl font-bold">訂購匯款資訊</h2>
+                    <p class="text-slate-400 text-sm mt-1">
+                        感謝您支持在地小農，請核對帳號後轉帳
+                    </p>
+                </div>
+                <div class="p-8 lg:p-12">
+                    <div class="space-y-6">
+                        <div
+                            class="flex justify-between items-center border-b border-slate-100 pb-4"
+                        >
+                            <span class="text-slate-500 font-medium"
+                                >銀行代號</span
+                            >
+                            <span class="text-xl font-bold text-slate-900"
+                                >700 (中華郵政)</span
+                            >
+                        </div>
+                        <div
+                            class="flex justify-between items-center border-b border-slate-100 pb-4"
+                        >
+                            <span class="text-slate-500 font-medium">帳號</span>
+                            <span
+                                class="text-xl font-bold text-pink-600 tracking-wider"
+                                >01210063185807</span
+                            >
+                        </div>
+                        <div
+                            class="flex justify-between items-center border-b border-slate-100 pb-4"
+                        >
+                            <span class="text-slate-500 font-medium">戶名</span>
+                            <span class="text-xl font-bold text-slate-900"
+                                >周詣凱</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="mt-10 bg-pink-50 p-6 rounded-2xl flex items-start gap-4"
+                    >
+                        <span class="text-2xl">💡</span>
+                        <div class="text-sm text-pink-800 leading-relaxed">
+                            <p class="font-bold mb-1">溫馨提示：</p>
+                            請於匯款完成後，透過 <strong>Line</strong> 或 <strong
+                                >電話</strong
+                            > 告知您的帳號末五碼及訂購人姓名，阿義老闆將會盡速為您安排當日鮮採與出貨。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

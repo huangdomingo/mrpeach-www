@@ -1,6 +1,8 @@
 ---
 // src/layouts/BaseLayout.astro
-import "../styles/global.css"; // [優化] 顯式引入全域樣式
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import logoImage from "../assets/lalashan-mrpeach-logo.png";
 
 interface Props {
   title?: string;
@@ -8,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = "拉拉山水蜜桃達人｜產地直送 & 預約採水蜜桃體驗",
-  description = "專營拉拉山水蜜桃產地直送及拉拉山採水蜜桃體驗。位於高海拔的達人果園，提供當季最新鮮甜美的水蜜桃。",
+  title = "拉拉山水蜜桃達人｜榮獲2025水蜜桃王",
+  description = "水蜜桃達人農場位於拉拉山上巴陵，傳承30年種植技術，榮獲2025年水蜜桃王。提供產地直送宅配與採果體驗。",
 } = Astro.props;
 ---
 
@@ -18,7 +20,6 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -28,12 +29,18 @@ const {
   >
     <nav class="bg-white shadow-md fixed w-full z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-          <div class="flex-shrink-0 flex items-center">
-            <span class="text-2xl font-bold text-pink-600 tracking-wider"
-              >🍑 拉拉山水蜜桃達人</span
+        <div class="flex justify-between h-20 items-center">
+          <a href="/" class="flex items-center">
+            <Image
+              src={logoImage}
+              alt="拉拉山水蜜桃達人 Logo"
+              class="h-12 w-auto"
+            />
+            <span class="ml-2 text-xl font-bold text-pink-600 hidden sm:block"
+              >水蜜桃達人農場</span
             >
-          </div>
+          </a>
+
           <div
             class="hidden md:flex space-x-8 items-center text-sm font-medium"
           >
@@ -58,34 +65,158 @@ const {
               >聯絡我們</a
             >
           </div>
+
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-600 hover:text-pink-600 focus:outline-none"
+            >
+              <svg
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg"
+      >
+        <div class="px-4 pt-2 pb-6 space-y-1">
+          <a
+            href="/about-orchard"
+            class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-pink-600 hover:bg-gray-50 rounded-md"
+            >關於果園</a
+          >
+          <a
+            href="/products"
+            class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-pink-600 hover:bg-gray-50 rounded-md"
+            >商品導購</a
+          >
+          <a
+            href="/diary"
+            class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-pink-600 hover:bg-gray-50 rounded-md"
+            >產地日記</a
+          >
+          <a
+            href="/faq"
+            class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-pink-600 hover:bg-gray-50 rounded-md"
+            >常見問題</a
+          >
+          <a
+            href="/contact"
+            class="block px-3 py-3 text-base font-bold text-pink-600 hover:bg-pink-50 rounded-md"
+            >聯絡我們</a
+          >
         </div>
       </div>
     </nav>
 
-    <main class="flex-grow pt-16"><slot /></main>
+    <main class="flex-grow pt-20">
+      <slot />
+    </main>
 
-    <footer class="bg-gray-900 text-white py-12 mt-auto">
-      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <footer class="bg-gray-900 text-white py-16 mt-auto">
+      <div
+        class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12"
+      >
         <div>
-          <h3 class="text-2xl font-bold mb-4">拉拉山水蜜桃達人</h3>
-          <p class="text-gray-400">海拔 1500M 的甜蜜承諾，產地直送到家。</p>
+          <h3
+            class="text-xl font-bold mb-6 text-pink-400 border-b border-gray-700 pb-2"
+          >
+            聯絡我們
+          </h3>
+          <ul class="space-y-4 text-gray-300 text-sm">
+            <li class="flex items-start gap-2">
+              <span>📍</span>
+              <span>桃園市復興區華陵里10鄰神木路113號</span>
+            </li>
+            <li>📞 電話：0934-195-496 (阿義老闆)</li>
+            <li>⏰ 營業時間：早上8點 ～ 晚上8點</li>
+            <li>💬 Line ID：a0934195496</li>
+          </ul>
         </div>
-        <div class="md:text-right">
-          <p>
-            © {new Date().getFullYear()} 拉拉山水蜜桃達人. All rights reserved.
-          </p>
+
+        <div>
+          <h3
+            class="text-xl font-bold mb-6 text-pink-400 border-b border-gray-700 pb-2"
+          >
+            匯款資訊
+          </h3>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li>郵局代號：700</li>
+            <li>帳號：01210063185807</li>
+            <li>戶名：周詣凱</li>
+            <li class="mt-4 text-xs text-gray-500 italic">
+              ※ 匯款後請透過 Line 告知帳號末五碼以便確認
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3
+            class="text-xl font-bold mb-6 text-pink-400 border-b border-gray-700 pb-2"
+          >
+            快速導覽
+          </h3>
+          <div class="grid grid-cols-2 gap-4 text-sm text-gray-400">
+            <a href="/about-orchard" class="hover:text-white transition"
+              >關於果園</a
+            >
+            <a href="/products" class="hover:text-white transition">商品導購</a>
+            <a href="/diary" class="hover:text-white transition">產地日記</a>
+            <a href="/faq" class="hover:text-white transition">常見問題</a>
+            <a href="/contact" class="hover:text-white transition">聯絡我們</a>
+            <a href="/" class="hover:text-white transition">首頁</a>
+          </div>
         </div>
       </div>
+
+      <div
+        class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500 font-light tracking-widest"
+      >
+        <p>
+          © {new Date().getFullYear()} 水蜜桃達人農場. All rights reserved. 支持台灣在地小農
+        </p>
+      </div>
     </footer>
+
+    <script is:inline>
+      const btn = document.getElementById("mobile-menu-button");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      // 點擊連結後自動關閉選單，避免擋住內容
+      const links = menu.querySelectorAll("a");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+        });
+      });
+    </script>
   </body>
 </html>
 
 <style is:global>
-  /* 參考 EZSTAY 的強效寬度控制 */
+  /* 全域寬度控制，防止任何元件造成左右滑動 */
   html,
   body {
-    width: 100%;
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 </style>
