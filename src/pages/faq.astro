@@ -1,30 +1,123 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+// src/pages/faq.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-const faqs = (await getCollection('faq')).sort(
-  (a, b) => (a.data.order ?? 999) - (b.data.order ?? 999)
+// 取得 FAQ 集合並依照 order 排序
+const faqs = (await getCollection("faq")).sort(
+  (a, b) => (a.data.order || 99) - (b.data.order || 99),
 );
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((item) => ({
-    "@type": "Question",
-    name: item.data.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.data.answer,
-    },
-  })),
-};
+const pageTitle = "常見問題 FAQ｜拉拉山水蜜桃達人農場";
 ---
 
-<BaseLayout title="常見問題｜拉拉山水蜜桃達人">
-  <script type="application/ld+json">
-    {JSON.stringify(faqJsonLd)}
-  </script>
+<BaseLayout title={pageTitle}>
+  <section class="bg-pink-50 py-12 lg:py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+        常見問題
+      </h1>
+      <p class="text-slate-600">
+        整理了關於訂購、運送與保存的常見疑慮，讓您買得安心、吃得開心。
+      </p>
+    </div>
+  </section>
 
-  {/* FAQ 清單 HTML 如前 */}
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="space-y-4">
+        {
+          faqs.map((faq) => (
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-pink-200 transition-all">
+              <summary class="flex justify-between items-center p-6 cursor-pointer bg-white list-none">
+                <h2 class="text-lg font-bold text-slate-800 group-open:text-pink-600 transition-colors">
+                  {faq.data.question}
+                </h2>
+                <span class="text-pink-600 transition-transform group-open:rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-50 pt-4 bg-slate-50/50">
+                {faq.data.answer}
+
+                {faq.data.order === 1 && (
+                  <div class="mt-4 overflow-x-auto">
+                    <table class="w-full text-sm border-collapse bg-white rounded-lg">
+                      <thead>
+                        <tr class="bg-slate-100 text-slate-700">
+                          <th class="border p-2 text-left">盒數 / 地區</th>
+                          <th class="border p-2 text-left">本島冷藏運費</th>
+                          <th class="border p-2 text-left">
+                            外島冷藏運費
+                          </th>{" "}
+                          {/* 新增標頭 */}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border p-2">1 - 2 盒</td>
+                          <td class="border p-2">$160</td>
+                          <td class="border p-2">$260</td> {/* 新增外島金額 */}
+                        </tr>
+                        <tr>
+                          <td class="border p-2">3 - 4 盒</td>
+                          <td class="border p-2">$225</td>
+                          <td class="border p-2">$340</td> {/* 新增外島金額 */}
+                        </tr>
+                        <tr>
+                          <td class="border p-2">5 盒以上</td>
+                          <td class="border p-2" colspan="2">
+                            請聯繫阿義老闆另有優惠
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p class="text-xs text-slate-400 mt-2 italic">
+                      ※ 外島地區包含澎湖、金門、馬祖、綠島、蘭嶼。
+                    </p>
+                  </div>
+                )}
+              </div>
+            </details>
+          ))
+        }
+      </div>
+
+      <div
+        class="mt-16 p-8 bg-pink-50 rounded-3xl text-center border border-pink-100"
+      >
+        <h3 class="text-xl font-bold text-slate-900 mb-4">還有其他問題嗎？</h3>
+        <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+          如果以上資訊仍無法解答您的疑問，<br
+          />歡迎直接聯繫阿義老闆，我們將竭誠為您服務。
+        </p>
+        <a
+          href="/contact"
+          class="inline-block bg-pink-600 text-white px-8 py-3 rounded-full font-bold hover:bg-pink-700 transition shadow-lg"
+        >
+          前往聯絡我們
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
 
+<style>
+  /* 隱藏預設的 details 三角形標籤 */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
