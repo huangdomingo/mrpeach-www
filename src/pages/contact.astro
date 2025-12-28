@@ -4,11 +4,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "聯絡我們｜水蜜桃達人農場 - 桃園拉拉山產地直送";
 const pageDescription =
-    "歡迎聯繫拉拉山水蜜桃達人農場！提供電話訂購、Line 諮詢以及農場親自採果預約。內含詳細農場地址、營業時間與匯款資訊。";
+    "歡迎聯繫拉拉山水蜜桃達人農場！提供電話訂購、Line 諮詢以及農場親自採果預約。內含精確農場地圖、營業時間與匯款資訊。";
 
-// 準備 Google 地圖嵌入連結 (已針對您的地址優化)
+// 1. 使用您提供的精確嵌入地圖網址
 const googleMapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.644158931557!2d121.4085444760592!3d24.68936307803831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34680998f86f7653%3A0x8e83b8b6c08e8b1!2zMzM25qGD5ZyS5biC5b6p6IiI5Y2A56We5pyo6LevMTEz6Jmf!5e0!3m2!1szh-TW!2stw!4v1704150000000!5m2!1szh-TW!2stw";
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.05844790861!2d121.40293307482126!3d24.69051745203773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681351a7a726bd%3A0xeb19d9d06c2a40b1!2z5rC06Jyc5qGD6YGU5Lq66L6y5aC0LOaLieaLieWxseawtOicnOahgyzmjqHmsLTonJzmoYMs5rC06Jyc5qGD!5e0!3m2!1szh-TW!2stw!4v1766907722308!5m2!1szh-TW!2stw";
+
+// 2. 使用您提供的精確 Google 地圖連結
+const googleMapLink = "https://maps.app.goo.gl/ovRnMs7Y6okyQv446";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -71,7 +74,7 @@ const googleMapSrc =
                             桃園縣復興鄉華鄰里10鄰神木路113號
                         </p>
                         <a
-                            href="https://www.google.com/maps/dir/?api=1&destination=桃園縣復興鄉華鄰里10鄰神木路113號"
+                            href={googleMapLink}
                             target="_blank"
                             class="inline-flex items-center text-sm font-bold text-pink-600 hover:underline"
                         >
@@ -117,7 +120,7 @@ const googleMapSrc =
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
-                        title="水蜜桃達人農場 Google 地圖"></iframe>
+                        title="水蜜桃達人農場 精確 Google 地圖"></iframe>
                 </div>
             </div>
         </div>
