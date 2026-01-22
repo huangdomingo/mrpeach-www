@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const products = (await getCollection("products")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const pageTitle = "商品導購｜拉拉山水蜜桃達人農場";
+---
+
+<BaseLayout title={pageTitle}>
+  <section class="bg-pink-50 py-12 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+        當季新鮮直送
+      </h1>
+      <p class="text-slate-600">產地現採、全車冷藏，將拉拉山的鮮甜送到您手中</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {
+        products.map((product) => (
+          <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all">
+            <div class="aspect-square overflow-hidden bg-gray-100">
+              <Image
+                src={product.data.image}
+                alt={product.data.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-8 flex-grow flex flex-col">
+              <h2 class="text-xl font-bold text-slate-900 mb-2">
+                {product.data.title}
+              </h2>
+              <p class="text-sm text-pink-600 font-bold mb-4">
+                {product.data.spec}
+              </p>
+              <p class="text-slate-600 text-sm mb-6 line-clamp-2">
+                {product.data.description}
+              </p>
+
+              <div class="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+                <span class="text-2xl font-black text-slate-900">
+                  NT$ {product.data.price}
+                </span>
+                <a
+                  href={`/products/${product.slug}`}
+                  class="bg-pink-600 text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-pink-700 transition"
+                >
+                  查看細節
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
