@@ -3,7 +3,7 @@ title: "精選分享 12 粒裝禮盒"
 price: 500
 spec: "2台斤~2台斤8兩 / 盒"
 image: "../../assets/products/peach-box-12.jpg"
-description: "高 CP 值入門款！顆數更多、分享更有感，日常自用或小禮首選。"
+description: "高 CP 值入門款的水蜜桃禮盒！顆數更多、分享更有感，日常自用或小禮首選。"
 order: 5
 isAvailable: true
 ---

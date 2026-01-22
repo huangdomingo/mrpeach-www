@@ -3,7 +3,7 @@ title: "無上尊榮 6 粒裝禮盒"
 price: 900
 spec: "2台斤~2台斤8兩 / 盒"
 image: "../../assets/products/peach-box-06.jpg"
-description: "大果精選！果形飽滿、香氣明顯，送禮體面、價格更好入手。"
+description: "水蜜桃大果精選！果形飽滿、香氣明顯，送禮體面、價格更好入手。"
 order: 2
 isAvailable: true
 ---
