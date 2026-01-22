@@ -1,5 +1,5 @@
 ---
-title: "頂級 8 粒裝禮盒"
+title: "非凡特選 8 粒裝禮盒"
 price: 700
 spec: "2台斤~2台斤8兩 / 盒"
 image: "../../assets/products/peach-box-08.jpg"
