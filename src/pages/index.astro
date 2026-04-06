@@ -18,7 +18,42 @@ const latestDiary = (await getCollection("diary")).sort(
 
 const pageTitle = "水蜜桃達人農場｜榮獲2025拉拉山水蜜桃王・高海拔產地直送";
 
-// 3. 媒體報導資料
+// 3. LocalBusiness 結構化資料（取代舊的 AgricultureService）
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "Farm"],
+  "name": "水蜜桃達人農場",
+  "alternateName": "拉拉山水蜜桃達人",
+  "description": "位於拉拉山上巴陵，海拔1,200至1,600公尺的高山水蜜桃農場。傳承三十年種植技術，榮獲2025年拉拉山水蜜桃王。每年五月至八月產季期間提供產地直送宅配與採果體驗。",
+  "award": "2025 拉拉山水蜜桃王",
+  "url": "https://www.mrpeach.com.tw",
+  "telephone": "+886-934-195-496",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "華陵村135-7號",
+    "addressLocality": "復興區",
+    "addressRegion": "桃園市",
+    "postalCode": "336",
+    "addressCountry": "TW"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+    ],
+    "opens": "08:00",
+    "closes": "20:00",
+    "validFrom": "2025-05-01",
+    "validThrough": "2025-08-31"
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=桃園市復興區華陵村135-7號",
+  "image": "https://www.mrpeach.com.tw/og-image.jpg",
+  "priceRange": "$$",
+  "currenciesAccepted": "TWD",
+  "paymentAccepted": "ATM Transfer, Cash on Delivery"
+};
+
+// 4. 媒體報導資料
 const mediaReports = [
   {
     title: "桃園復興拉拉山水蜜桃開採 買正宗高品質認明產地標章",
@@ -45,21 +80,12 @@ const mediaReports = [
 ---
 
 <BaseLayout title={pageTitle}>
-  <!-- 加入 JSON-LD 結構化資料以強化 SEO -->
-  <script type="application/ld+json" slot="head" is:inline>
-  {
-    "@context": "https://schema.org",
-    "@type": "AgricultureService",
-    "name": "水蜜桃達人農場",
-    "description": "2025拉拉山水蜜桃王得主，提供高品質產地直送水蜜桃。",
-    "award": "2025 拉拉山水蜜桃王",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "桃園市復興區拉拉山"
-    },
-    "url": "https://www.mrpeach.com.tw"
-  }
-  </script>
+  <!-- LocalBusiness 結構化資料 -->
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(localBusinessSchema)}
+  />
   <section
     class="relative w-full min-h-[600px] lg:h-[90vh] flex items-center overflow-hidden bg-slate-900"
   >

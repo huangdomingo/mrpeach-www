@@ -7,12 +7,18 @@ import logoImage from "../assets/lalashan-mrpeach-logo.png";
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;   // 完整 URL，例如 https://www.mrpeach.com.tw/og-image.jpg
+  ogType?: string;    // og:type，預設 "website"，文章頁用 "article"
 }
 
 const {
   title = "拉拉山水蜜桃達人｜榮獲2025水蜜桃王",
   description = "水蜜桃達人農場位於拉拉山上巴陵，傳承30年種植技術，榮獲2025年水蜜桃王。提供產地直送宅配與採果體驗。",
+  ogImage = `${Astro.site}og-image.jpg`,
+  ogType = "website",
 } = Astro.props;
+
+const canonicalURL = Astro.url.href;
 ---
 
 <!doctype html>
@@ -23,6 +29,29 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="水蜜桃達人農場" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- 各頁面可插入額外的 <head> 內容（例如 JSON-LD） -->
+    <slot name="head" />
   </head>
   <body
     class="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col overflow-x-hidden"

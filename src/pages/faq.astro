@@ -9,9 +9,29 @@ const faqs = (await getCollection("faq")).sort(
 );
 
 const pageTitle = "常見問題 FAQ｜拉拉山水蜜桃達人農場";
+const pageDescription = "拉拉山水蜜桃達人農場常見問題：宅配運費計算、保存方式、訂購流程一次解答。";
+
+// 組成 FAQPage 結構化資料
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.data.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.data.answer,
+    },
+  })),
+};
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(faqSchema)}
+  />
   <section class="bg-pink-50 py-12 lg:py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">

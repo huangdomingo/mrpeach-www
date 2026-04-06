@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 
 export async function getStaticPaths() {
   const products = await getCollection("products");
@@ -13,9 +13,21 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+// 取得商品圖的完整 URL，供 OG 標籤使用
+const processed = await getImage({ src: post.data.image, width: 1200, height: 630 });
+const ogImageUrl = new URL(processed.src, Astro.site).href;
+
+// 商品 description：結合規格與原有描述文字
+const ogDescription = `${post.data.spec}｜拉拉山高海拔水蜜桃，產地直送。${post.data.description}`;
 ---
 
-<BaseLayout title={`${post.data.title}｜水蜜桃達人農場`}>
+<BaseLayout
+  title={`${post.data.title}｜水蜜桃達人農場`}
+  description={ogDescription}
+  ogImage={ogImageUrl}
+  ogType="product"
+>
   <article class="py-12 lg:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-12 mb-20">
