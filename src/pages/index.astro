@@ -3,6 +3,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import GoogleReviews from "../components/GoogleReviews.astro";
 
 // 1. 引入關鍵視覺圖
 import heroOwner from "../assets/hero/hero-peach-orchard.jpg";
@@ -287,6 +288,8 @@ const mediaReports = [
       </div>
     </div>
   </section>
+
+  <GoogleReviews />
 
   {
     latestDiary && (
