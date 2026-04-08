@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.4",
+    "astro-seo": "^1.1.0",
     "tailwindcss": "^4.1.17"
   }
 }

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /~partytown/
 
 Sitemap: https://www.mrpeach.com.tw/sitemap-index.xml
