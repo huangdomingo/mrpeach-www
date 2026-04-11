@@ -1,0 +1,80 @@
+---
+// src/pages/encyclopedia/index.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("encyclopedia")).sort(
+  (a, b) => (a.data.order || 99) - (b.data.order || 99),
+);
+
+// Group by category
+const categories = [...new Set(articles.map((a) => a.data.category))];
+---
+
+<BaseLayout
+  title="水蜜桃百科｜拉拉山水蜜桃達人農場"
+  description="水蜜桃知識庫：認識甜度、品種、栽培技術、保存方法與產地知識。超過30年種植經驗的專業分享。"
+>
+  <section class="bg-gradient-to-b from-pink-50 to-white py-16 text-center">
+    <h1 class="text-4xl font-bold text-slate-900 mb-4">🍑 水蜜桃百科</h1>
+    <p class="text-slate-600 max-w-2xl mx-auto">
+      超過三十年的種植經驗，整理成系統性的水蜜桃知識。<br />
+      從甜度到栽培、從挑選到保存，全方位認識拉拉山水蜜桃。
+    </p>
+    <div class="mt-6 text-sm text-pink-600 font-bold">
+      目前收錄：{articles.length} 篇文章
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Category Navigation -->
+    <div class="flex flex-wrap gap-3 mb-12 justify-center">
+      {
+        categories.map((cat) => (
+          <span class="bg-pink-100 text-pink-700 px-4 py-2 rounded-full text-sm font-bold">
+            {cat}
+          </span>
+        ))
+      }
+    </div>
+
+    <!-- Article Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        articles.map((article) => (
+          <a
+            href={`/encyclopedia/${article.slug}`}
+            class="block bg-white rounded-2xl shadow-sm border border-slate-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all group"
+          >
+            <div class="text-pink-600 text-sm font-bold mb-3">
+              {article.data.category}
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 group-hover:text-pink-600 mb-3 leading-snug">
+              {article.data.title}
+            </h2>
+            <p class="text-slate-500 text-sm line-clamp-2 mb-4">
+              {article.data.description}
+            </p>
+            <div class="flex items-center text-pink-600 text-sm font-bold">
+              閱讀全文
+              <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-16 text-center p-8 bg-pink-50 rounded-3xl">
+      <p class="text-slate-600 mb-4">
+        想了解特定主題？歡迎透過 Line 詢問阿義老闆。
+      </p>
+      <a
+        href="/diary"
+        class="inline-block bg-pink-600 text-white px-8 py-3 rounded-full font-bold hover:bg-pink-700 transition"
+      >
+        閱讀產地日記
+      </a>
+    </div>
+  </section>
+</BaseLayout>
