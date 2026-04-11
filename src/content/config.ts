@@ -30,7 +30,7 @@ const productsCollection = defineCollection({
     }),
 });
 
-// 3. 定義 FAQ 格式 (如果您有建立對應資料夾)
+// 3. 定義 FAQ 格式
 const faqCollection = defineCollection({
   type: "content",
   schema: z.object({
@@ -40,9 +40,23 @@ const faqCollection = defineCollection({
   }),
 });
 
-// 統一導出所有集合 (這行只能出現一次)
+// 4. 定義百科格式（水蜜桃知識庫）
+const encyclopediaCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),  // 分類：栽培、品種、風味、保存、病蟲害、產地
+    tags: z.array(z.string()).default([]),
+    order: z.number().default(99),  // 顯示順序
+    relatedArticles: z.array(z.string()).default([]),  // 相關文章 slug 列表
+  }),
+});
+
+// 統一導出所有集合
 export const collections = {
   diary: diaryCollection,
   faq: faqCollection,
   products: productsCollection,
+  encyclopedia: encyclopediaCollection,
 };
