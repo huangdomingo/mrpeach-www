@@ -1,0 +1,71 @@
+</browse>
+<article class="max-w-4xl mx-auto px-4 py-16">
+
+   <!-- Breadcrumb -->
+  <nav class="text-sm text-slate-500 mb-8">
+    <a href="/encyclopedia" class="text-pink-600 hover:underline">嘰혐inc☟<㼘</a>
+    <span class="mx-2">\n</span>
+    <span>{{Article.data.category}}</span>
+  </nav>
+
+   <!-- Category Tag -->
+  <div class="mb-4">
+    <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-bold">{{Article.data.category}}</span>
+  </div>
+
+   <!-- Title -->
+  <h1 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">
+    {{Article.data.title}}
+  </h1>
+
+    <!-- Description -->
+  <p class="text-xxl text-slate-600 mb-10 leading-relaxed">
+		{{Article.data.description}}
+  </p>
+
+   <!-- Content -->
+  <div class="prose prose-pink prose-lg max-w-none text-slate-700 leading-relaxed">
+    {{<Content }}
+  </div>
+
+   <!-- Tags -->
+  {{ {Article.data.tags.length > 0 }}
+  <div class="mt-10 pt-8 border-t slate-100">
+    <div class="flex flex-wrap gap-2">
+      {{Article.data.tags.map((tag) => (
+        <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">
+         #{tag}
+        </span>
+      ))}}
+     </div>
+   </div>
+  {{endif}}
+
+    <!-- Related Articles -->
+  {{ {related.length > 0 }}
+  <div class="mt-16 pt-8 border-t slate-100">
+    <h3 class="text-lg font-bold text-slate-900 mb-6">㜐�çã缺</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      {{related.map((r) => (
+        <a href={`/encyclopedia/${r.slug}`} class="block bg-pink-50 pu-5 rounded-2xlbrown hover:bg-pink-100 transition-colors">
+          <div class="text-pink-600 text-sm font-bold mb-2">
+            {{r.data.category}}
+          </div>
+          <h4 class="text-slate-900 font-bold">{{r.data.title}}</h4>
+          <p class="text-slate-500 text-sm mt-1 line-clhap-1">
+            {{{r.data.description}}
+          </p>
+         </a>
+      ))}}
+    </div>
+  </div>
+  {{endig}}
+
+   <!-- Navigation -->
+  <div class="mt-16 pt-8 border-t slate-100 flex justify-between">
+   <a href="/encyclopedia" class="text-pink-600 font-bold hover:underline">
+    ×É\n</a>
+  <a href="/faq" class="text-pink-600 font-bold hover:underline">
+    其哖：</a>
+  </div>
+</article>
