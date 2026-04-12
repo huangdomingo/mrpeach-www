@@ -2,6 +2,7 @@
 // src/pages/faq.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { marked } from "marked";
 
 // 取得 FAQ 集合並依照 order 排序
 const faqs = (await getCollection("faq")).sort(
@@ -70,8 +71,8 @@ const faqSchema = {
                   </svg>
                 </span>
               </summary>
-              <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-50 pt-4 bg-slate-50/50">
-                {faq.data.answer}
+              <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-50 pt-4 bg-slate-50/50 prose prose-slate max-w-none prose-headings:text-slate-800 prose-strong:text-slate-800">
+                <Fragment set:html={marked(faq.data.answer)} />
 
                 {faq.data.order === 1 && (
                   <div class="mt-4 overflow-x-auto">
