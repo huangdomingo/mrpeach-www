@@ -3,7 +3,7 @@ title: "〈從年輕吃到變阿公：那些陪著我們長大的老客戶〉"
 pubDate: 2025-12-29
 description: "37年來，有一群人每年產季固定回來，像老朋友一樣。他們的故事，是我們堅持下去的動力。"
 author: "阿義"
-image: "../../assets/products/lalashan-peach-master-customers.png"
+image: "../../assets/products/lalashan-peach-master-customers.jpg"
 ---
 
 每年拉拉山水蜜桃產季，電話一響，有時候我光聽開頭那個「喂，小周喔？」就知道是誰。
