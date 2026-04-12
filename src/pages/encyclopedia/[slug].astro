@@ -1,71 +1,96 @@
-</browse>
-<article class="max-w-4xl mx-auto px-4 py-16">
+---
+// src/pages/encyclopedia/[slug].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
 
-   <!-- Breadcrumb -->
-  <nav class="text-sm text-slate-500 mb-8">
-    <a href="/encyclopedia" class="text-pink-600 hover:underline">嘰혐inc☟<㼘</a>
-    <span class="mx-2">\n</span>
-    <span>{{Article.data.category}}</span>
-  </nav>
+export async function getStaticPaths() {
+  const articles = await getCollection("encyclopedia");
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
 
-   <!-- Category Tag -->
-  <div class="mb-4">
-    <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-bold">{{Article.data.category}}</span>
-  </div>
+const { article } = Astro.props;
+const { Content } = await render(article);
 
-   <!-- Title -->
-  <h1 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">
-    {{Article.data.title}}
-  </h1>
+const allArticles = await getCollection("encyclopedia");
+const related = allArticles.filter(
+  (a) => article.data.relatedArticles?.includes(a.slug) && a.slug !== article.slug
+);
+---
 
-    <!-- Description -->
-  <p class="text-xxl text-slate-600 mb-10 leading-relaxed">
-		{{Article.data.description}}
-  </p>
+<BaseLayout
+  title={`${article.data.title}｜水蜜桃百科`}
+  description={article.data.description}
+  ogType="article"
+>
+  <article class="max-w-4xl mx-auto px-4 py-16">
+    <nav class="text-sm text-slate-500 mb-8">
+      <a href="/encyclopedia" class="text-pink-600 hover:underline">水蜜桃百科</a>
+      <span class="mx-2">›</span>
+      <span>{article.data.category}</span>
+    </nav>
 
-   <!-- Content -->
-  <div class="prose prose-pink prose-lg max-w-none text-slate-700 leading-relaxed">
-    {{<Content }}
-  </div>
-
-   <!-- Tags -->
-  {{ {Article.data.tags.length > 0 }}
-  <div class="mt-10 pt-8 border-t slate-100">
-    <div class="flex flex-wrap gap-2">
-      {{Article.data.tags.map((tag) => (
-        <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">
-         #{tag}
-        </span>
-      ))}}
-     </div>
-   </div>
-  {{endif}}
-
-    <!-- Related Articles -->
-  {{ {related.length > 0 }}
-  <div class="mt-16 pt-8 border-t slate-100">
-    <h3 class="text-lg font-bold text-slate-900 mb-6">㜐�çã缺</h3>
-    <div class="grid md:grid-cols-2 gap-4">
-      {{related.map((r) => (
-        <a href={`/encyclopedia/${r.slug}`} class="block bg-pink-50 pu-5 rounded-2xlbrown hover:bg-pink-100 transition-colors">
-          <div class="text-pink-600 text-sm font-bold mb-2">
-            {{r.data.category}}
-          </div>
-          <h4 class="text-slate-900 font-bold">{{r.data.title}}</h4>
-          <p class="text-slate-500 text-sm mt-1 line-clhap-1">
-            {{{r.data.description}}
-          </p>
-         </a>
-      ))}}
+    <div class="mb-4">
+      <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-bold">
+        {article.data.category}
+      </span>
     </div>
-  </div>
-  {{endig}}
 
-   <!-- Navigation -->
-  <div class="mt-16 pt-8 border-t slate-100 flex justify-between">
-   <a href="/encyclopedia" class="text-pink-600 font-bold hover:underline">
-    ×É\n</a>
-  <a href="/faq" class="text-pink-600 font-bold hover:underline">
-    其哖：</a>
-  </div>
-</article>
+    <h1 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">
+      {article.data.title}
+    </h1>
+
+    <p class="text-xl text-slate-600 mb-10 leading-relaxed">
+      {article.data.description}
+    </p>
+
+    <div class="prose prose-pink prose-lg max-w-none text-slate-700 leading-relaxed">
+      <Content />
+    </div>
+
+    {article.data.tags && article.data.tags.length > 0 && (
+      <div class="mt-10 pt-8 border-t border-slate-100">
+        <div class="flex flex-wrap gap-2">
+          {article.data.tags.map((tag) => (
+            <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-sm">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {related.length > 0 && (
+      <div class="mt-16 pt-8 border-t border-slate-100">
+        <h3 class="text-lg font-bold text-slate-900 mb-6">📚 相關文章</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          {related.map((r) => (
+            <a
+              href={`/encyclopedia/${r.slug}`}
+              class="block bg-pink-50 p-5 rounded-2xl hover:bg-pink-100 transition-colors"
+            >
+              <div class="text-pink-600 text-sm font-bold mb-2">
+                {r.data.category}
+              </div>
+              <h4 class="text-slate-900 font-bold">{r.data.title}</h4>
+              <p class="text-slate-500 text-sm mt-1 line-clamp-1">
+                {r.data.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="mt-16 pt-8 border-t border-slate-100 flex justify-between">
+      <a href="/encyclopedia" class="text-pink-600 font-bold hover:underline">
+        ← 回到水蜜桃百科
+      </a>
+      <a href="/faq" class="text-pink-600 font-bold hover:underline">
+        查看常見問題
+      </a>
+    </div>
+  </article>
+</BaseLayout>
