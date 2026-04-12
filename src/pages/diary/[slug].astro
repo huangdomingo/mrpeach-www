@@ -6,16 +6,19 @@ import { Image, getImage } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("diary");
-  return posts.map((post) => ({
+  // Sort by date descending (newest first)
+  const sorted = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return sorted.map((post, index) => ({
     params: { slug: post.slug },
-    props: { post },
+    props: { post, prev: index < sorted.length - 1 ? sorted[index + 1] : null, next: index > 0 ? sorted[index - 1] : null },
   }));
 }
 
-const { post } = Astro.props;
+const { post, prev, next } = Astro.props;
 const { Content } = await render(post);
 
-// 取得封面圖的完整 URL，供 OG 標籤使用
 let ogImageUrl: string | undefined;
 if (post.data.image) {
   const processed = await getImage({ src: post.data.image, width: 1200, height: 630 });
@@ -86,15 +89,45 @@ if (post.data.image) {
       <Content />
     </div>
 
+    <!-- 上一篇 / 下一篇 導航 -->
+    <div class="mt-16 pt-8 border-t border-slate-100">
+      <div class="flex justify-between gap-4">
+        {
+          prev ? (
+            <a href={`/diary/${prev.slug}`} class="flex-1 group">
+              <div class="text-sm text-slate-500 mb-1">← 上一篇</div>
+              <div class="text-slate-700 font-bold group-hover:text-pink-600 transition-colors line-clamp-2">
+                {prev.data.title}
+              </div>
+            </a>
+          ) : (
+            <div />
+          )
+        }
+        {
+          next ? (
+            <a href={`/diary/${next.slug}`} class="flex-1 text-right group">
+              <div class="text-sm text-slate-500 mb-1">下一篇 →</div>
+              <div class="text-slate-700 font-bold group-hover:text-pink-600 transition-colors line-clamp-2">
+                {next.data.title}
+              </div>
+            </a>
+          ) : (
+            <div />
+          )
+        }
+      </div>
+    </div>
+
     <!-- 相關內容推薦 -->
     <div class="mt-16 pt-8 border-t border-slate-100">
       <h3 class="text-lg font-bold text-slate-900 mb-6">📚 延伸閱讀</h3>
       <div class="grid md:grid-cols-3 gap-4">
-        <a href="/faq#甜度" class="block bg-pink-50 p-5 rounded-2xl hover:bg-pink-100 transition-colors">
+        <a href="/faq" class="block bg-pink-50 p-5 rounded-2xl hover:bg-pink-100 transition-colors">
           <div class="text-pink-600 font-bold mb-2">🍑 甜度知識</div>
           <p class="text-sm text-slate-600">認識水蜜桃 Brix 甜度與影響因素</p>
         </a>
-        <a href="/faq#保存" class="block bg-pink-50 p-5 rounded-2xl hover:bg-pink-100 transition-colors">
+        <a href="/faq" class="block bg-pink-50 p-5 rounded-2xl hover:bg-pink-100 transition-colors">
           <div class="text-pink-600 font-bold mb-2">📦 保存方法</div>
           <p class="text-sm text-slate-600">水蜜桃可以放冰箱嗎？正確保存步驟</p>
         </a>
