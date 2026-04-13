@@ -43,14 +43,16 @@ const faqCollection = defineCollection({
 // 4. 定義百科格式（水蜜桃知識庫）
 const encyclopediaCollection = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    category: z.string(),  // 分類：栽培、品種、風味、保存、病蟲害、產地
-    tags: z.array(z.string()).default([]),
-    order: z.number().default(99),  // 顯示順序
-    relatedArticles: z.array(z.string()).default([]),  // 相關文章 slug 列表
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      category: z.string(),  // 分類：栽培、品種、風味、保存、病蟲害、產地
+      tags: z.array(z.string()).default([]),
+      order: z.number().default(99),  // 顯示順序
+      relatedArticles: z.array(z.string()).default([]),  // 相關文章 slug 列表
+      image: image().optional(),  // 文章特色圖
+    }),
 });
 
 // 統一導出所有集合
