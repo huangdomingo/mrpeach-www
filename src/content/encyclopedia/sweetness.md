@@ -4,7 +4,7 @@ description: "認識水蜜桃甜度指標 Brix、影響甜度的關鍵因素，�
 category: "風味"
 tags: ["甜度", "Brix", "品質", "挑選"]
 order: 1
-relatedArticles: ["preservation", "varieties", "origin"]
+relatedArticles: ["preservation", "season-flowering"]
 ---
 
 ## 什麼是 Brix（甜度）？
