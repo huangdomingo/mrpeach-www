@@ -4,7 +4,7 @@ description: "拉拉山水蜜桃產季什麼時候？早生、中生、晚生品
 category: "產地"
 tags: ["產季", "採收", "品種", "早生", "中生", "晚生", "拉拉山"]
 order: 3
-image: "../../assets/products/peach-harvest-basket-full.jpg"
+image: "../../assets/products/peach-harvest-loading-truck-farmer.jpg"
 relatedArticles: ["sweetness", "season-flowering"]
 ---
 
