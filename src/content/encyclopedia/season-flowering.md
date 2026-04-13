@@ -4,6 +4,7 @@ description: "拉拉山水蜜桃什麼時候开花？產季從幾月到幾月？
 category: "產地"
 tags: ["產季", "花期", "品種", "採收", "拉拉山"]
 order: 2
+image: "../../assets/products/diary-2026-02-23-blossom-peak.jpg"
 relatedArticles: ["sweetness", "preservation"]
 ---
 
