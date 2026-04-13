@@ -2,6 +2,7 @@
 // src/pages/encyclopedia/[slug].astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
+import { Image, getImage } from "astro:assets";
 
 export async function getStaticPaths() {
   const articles = await getCollection("encyclopedia");
@@ -18,11 +19,18 @@ const allArticles = await getCollection("encyclopedia");
 const related = allArticles.filter(
   (a) => article.data.relatedArticles?.includes(a.slug) && a.slug !== article.slug
 );
+
+let ogImageUrl: string | undefined;
+if (article.data.image) {
+  const processed = await getImage({ src: article.data.image, width: 1200, height: 630 });
+  ogImageUrl = new URL(processed.src, Astro.site).href;
+}
 ---
 
 <BaseLayout
   title={`${article.data.title}｜水蜜桃百科`}
   description={article.data.description}
+  ogImage={ogImageUrl}
   ogType="article"
 >
   <article class="max-w-4xl mx-auto px-4 py-16">
@@ -31,6 +39,16 @@ const related = allArticles.filter(
       <span class="mx-2">›</span>
       <span>{article.data.category}</span>
     </nav>
+
+    {article.data.image && (
+      <div class="mb-10 rounded-3xl overflow-hidden shadow-xl">
+        <Image
+          src={article.data.image}
+          alt={article.data.title}
+          class="w-full h-[400px] object-cover"
+        />
+      </div>
+    )}
 
     <div class="mb-4">
       <span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-bold">
