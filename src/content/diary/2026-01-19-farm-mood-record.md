@@ -3,7 +3,7 @@ title: "〈那顆你吃到的甜，從這一刀開始：春天疏果的取捨課
 pubDate: 2026-01-19
 description: "一月的拉拉山正忙著修枝，但阿義的心思已經跑到幾個月後的疏果了。疏果是什麼？為什麼要剪掉好好的果？這一刀的捨得，決定了你夏天吃到的那顆拉拉山水蜜桃有多甜。"
 author: "阿義"
-image: "../../assets/products/peach-young-green-fruit.jpg"
+image: "../../assets/products/diary-2026-01-19-fresh-halved-peach.jpg"
 ---
 
 一月的果園，桃樹還在冬眠，枝條光禿禿的，我每天在園子裡走，手上拿的是剪刀，忙的是修枝。
