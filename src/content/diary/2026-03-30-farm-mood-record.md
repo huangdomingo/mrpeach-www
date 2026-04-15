@@ -3,7 +3,7 @@ title: "〈疏果，就是在做一個很殘忍的決定〉"
 pubDate: 2026-03-30
 description: "三月底，拉拉山早生品種的幼果已初具雛形。阿義開始了近二十甲桃園的疏果工作——把太密、太小的果實親手摘掉。每摘一顆，都是為了讓留下來的那顆，長得更好。"
 author: "阿義"
-image: "../../assets/products/peach-single-unripe-on-branch.jpg"
+image: "../../assets/products/peach-single-unripe-on-branch-1600x900.jpg"
 ---
 
 三月三十號，上山。
