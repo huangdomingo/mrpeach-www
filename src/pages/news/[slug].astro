@@ -1,0 +1,57 @@
+---
+// src/pages/news/[slug].astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("news");
+  const sorted = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return sorted.map((post, index) => ({
+    params: { slug: post.slug },
+    props: {
+      post,
+      prev: index < sorted.length - 1 ? sorted[index + 1] : null,
+      next: index > 0 ? sorted[index - 1] : null,
+    },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout
+  title={`${post.data.title}｜最新消息`}
+  description={post.data.description || post.data.title}
+  ogType="article"
+>
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+      <div class="text-pink-600 font-bold text-sm mb-3">
+        {post.data.pubDate.toLocaleDateString("zh-TW", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </div>
+      <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+        {post.data.title}
+      </h1>
+    </div>
+
+    <div class="prose prose-lg prose-pink max-w-none text-slate-700">
+      <Content />
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-slate-100 text-center">
+      <a
+        href="/news"
+        class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 font-bold"
+      >
+        ← 返回最新消息
+      </a>
+    </div>
+  </article>
+</BaseLayout>

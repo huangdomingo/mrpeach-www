@@ -1,0 +1,55 @@
+---
+// src/pages/news/index.astro
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const news = (await getCollection("news")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="最新消息｜拉拉山水蜜桃達人農場"
+  description="拉拉山水蜜桃最新消息：2026年預購開放、產季動態、果園近況。了解水蜜桃王的產地第一手資訊。"
+>
+  <section class="bg-gradient-to-b from-pink-50 to-white py-16 text-center">
+    <h1 class="text-4xl font-bold text-slate-900 mb-4">📢 最新消息</h1>
+    <p class="text-slate-600 max-w-2xl mx-auto">
+      水蜜桃產季動態、預購資訊、果園近況<br />
+      都在第一時間在這裡分享給您。
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 py-12 space-y-8">
+    {news.length === 0 ? (
+      <div class="text-center py-12 text-slate-500">
+        <p class="text-lg">敬請期待即將推出的最新消息。</p>
+      </div>
+    ) : (
+      news.map((item) => (
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+          <a href={`/news/${item.slug}`} class="block p-8">
+            <div class="text-sm text-pink-600 font-bold mb-2">
+              {item.data.pubDate.toLocaleDateString("zh-TW", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-3 hover:text-pink-600 transition-colors">
+              {item.data.title}
+            </h2>
+            {item.data.description && (
+              <p class="text-slate-600 leading-relaxed">
+                {item.data.description}
+              </p>
+            )}
+            <div class="mt-4 text-pink-600 font-bold hover:underline">
+              閱讀更多 →
+            </div>
+          </a>
+        </article>
+      ))
+    )}
+  </section>
+</BaseLayout>

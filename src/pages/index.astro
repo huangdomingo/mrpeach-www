@@ -87,6 +87,23 @@ const mediaReports = [
     slot="head"
     set:html={JSON.stringify(localBusinessSchema)}
   />
+
+  <!-- 預購橫幅 -->
+  <div class="bg-gradient-to-r from-pink-600 to-pink-500 text-white py-3 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <span class="bg-white text-pink-600 text-xs font-black px-3 py-1 rounded-full">預購中</span>
+        <span class="font-bold text-sm sm:text-base">🍑 2026 拉拉山水蜜桃預購開放｜5月20日起依序出貨</span>
+      </div>
+      <a
+        href="/news"
+        class="bg-white text-pink-600 hover:bg-pink-50 font-bold text-sm px-5 py-1.5 rounded-full transition whitespace-nowrap"
+      >
+        立即預購 →
+      </a>
+    </div>
+  </div>
+
   <section
     class="relative w-full min-h-[600px] lg:h-[90vh] flex items-center overflow-hidden bg-slate-900"
   >

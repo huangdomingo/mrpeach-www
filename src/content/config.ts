@@ -47,12 +47,23 @@ const encyclopediaCollection = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      category: z.string(),  // 分類：栽培、品種、風味、保存、病蟲害、產地
+      category: z.string(),
       tags: z.array(z.string()).default([]),
-      order: z.number().default(99),  // 顯示順序
-      relatedArticles: z.array(z.string()).default([]),  // 相關文章 slug 列表
-      image: image().optional(),  // 文章特色圖
+      order: z.number().default(99),
+      relatedArticles: z.array(z.string()).default([]),
+      image: image().optional(),
     }),
+});
+
+// 5. 最新消息 collection
+const newsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.date(),
+    description: z.string().optional(),
+    order: z.number().default(99),
+  }),
 });
 
 // 統一導出所有集合
@@ -61,4 +72,5 @@ export const collections = {
   faq: faqCollection,
   products: productsCollection,
   encyclopedia: encyclopediaCollection,
+  news: newsCollection,
 };
