@@ -3,6 +3,7 @@ title: "2026 拉拉山水蜜桃預購開放｜5月20日起依序出貨"
 pubDate: 2026-04-17
 description: "等了整年的拉拉山水蜜桃，2026年產季正式開放預購！5月20日起，依訂購順序依序出貨。"
 order: 1
+image: "../../assets/products/preorder-banner-orchard.jpg"
 ---
 
 拉拉山水蜜桃，2026 年正式開放預購了。
@@ -61,8 +62,3 @@ order: 1
 
 阿義
 2026 年 4 月，拉拉山
-
-<div class="my-8 space-y-6">
-  <img src="/assets/products/preorder-banner-orchard.jpg" alt="拉拉山水蜜桃套袋中的果園" class="w-full rounded-2xl" loading="lazy" />
-  <img src="/assets/products/preorder-banner-crates.jpg" alt="拉拉山水蜜桃採收箱" class="w-full rounded-2xl" loading="lazy" />
-</div>

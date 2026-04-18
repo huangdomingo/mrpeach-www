@@ -2,6 +2,7 @@
 // src/pages/news/[slug].astro
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
+import { Image, getImage } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("news");
@@ -20,14 +21,33 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+let ogImageUrl: string | undefined;
+if (post.data.image) {
+  const processed = await getImage({ src: post.data.image, width: 1200, height: 630 });
+  ogImageUrl = new URL(processed.src, Astro.site).href;
+}
 ---
 
 <BaseLayout
   title={`${post.data.title}｜最新消息`}
   description={post.data.description || post.data.title}
   ogType="article"
+  ogImage={ogImageUrl}
 >
   <article class="max-w-3xl mx-auto px-4 py-16">
+    {
+      post.data.image && (
+        <div class="mb-10 rounded-3xl overflow-hidden shadow-xl">
+          <Image
+            src={post.data.image}
+            alt={post.data.title}
+            class="w-full h-[400px] object-cover"
+          />
+        </div>
+      )
+    }
+
     <div class="text-center mb-10">
       <div class="text-pink-600 font-bold text-sm mb-3">
         {post.data.pubDate.toLocaleDateString("zh-TW", {

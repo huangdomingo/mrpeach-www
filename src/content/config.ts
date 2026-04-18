@@ -58,12 +58,14 @@ const encyclopediaCollection = defineCollection({
 // 5. 最新消息 collection
 const newsCollection = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    pubDate: z.date(),
-    description: z.string().optional(),
-    order: z.number().default(99),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      pubDate: z.date(),
+      description: z.string().optional(),
+      order: z.number().default(99),
+      image: image().optional(),
+    }),
 });
 
 // 統一導出所有集合
