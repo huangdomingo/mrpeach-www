@@ -23,35 +23,43 @@ const pageTitle = "水蜜桃達人農場｜榮獲2025拉拉山水蜜桃王・高
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "Farm"],
-  "name": "水蜜桃達人農場",
-  "alternateName": "拉拉山水蜜桃達人",
-  "description": "位於拉拉山上巴陵，海拔1,200至1,600公尺的高山水蜜桃農場。傳承三十年種植技術，榮獲2025年拉拉山水蜜桃王。每年五月至八月產季期間提供產地直送宅配與採果體驗。",
-  "award": "2025 拉拉山水蜜桃王",
-  "url": "https://www.mrpeach.com.tw",
-  "telephone": "+886-934-195-496",
-  "address": {
+  name: "水蜜桃達人農場",
+  alternateName: "拉拉山水蜜桃達人",
+  description:
+    "位於拉拉山上巴陵，海拔1,200至1,600公尺的高山水蜜桃農場。傳承三十年種植技術，榮獲2025年拉拉山水蜜桃王。每年五月至八月產季期間提供產地直送宅配與採果體驗。",
+  award: "2025 拉拉山水蜜桃王",
+  url: "https://www.mrpeach.com.tw",
+  telephone: "+886-934-195-496",
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "華陵村135-7號",
-    "addressLocality": "復興區",
-    "addressRegion": "桃園市",
-    "postalCode": "336",
-    "addressCountry": "TW"
+    streetAddress: "華陵村135-7號",
+    addressLocality: "復興區",
+    addressRegion: "桃園市",
+    postalCode: "336",
+    addressCountry: "TW",
   },
-  "openingHoursSpecification": {
+  openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
     ],
-    "opens": "08:00",
-    "closes": "20:00",
-    "validFrom": "2025-05-01",
-    "validThrough": "2025-08-31"
+    opens: "08:00",
+    closes: "20:00",
+    validFrom: "2025-05-01",
+    validThrough: "2025-08-31",
   },
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=桃園市復興區華陵村135-7號",
-  "image": "https://www.mrpeach.com.tw/og-image.jpg",
-  "priceRange": "$$",
-  "currenciesAccepted": "TWD",
-  "paymentAccepted": "ATM Transfer, Cash on Delivery"
+  hasMap:
+    "https://www.google.com/maps/search/?api=1&query=桃園市復興區華陵村135-7號",
+  image: "https://www.mrpeach.com.tw/og-image.jpg",
+  priceRange: "$$",
+  currenciesAccepted: "TWD",
+  paymentAccepted: "ATM Transfer, Cash on Delivery",
 };
 
 // 4. 媒體報導資料
@@ -61,22 +69,22 @@ const mediaReports = [
     date: "2025/07/11",
     source: "自由時報",
     url: "https://news.ltn.com.tw/news/life/breakingnews/5106844",
-    icon: "📰"
+    icon: "📰",
   },
   {
     title: "114年度復興區水蜜桃評選結果揭曉 周峻儀勇奪水蜜桃王",
     date: "2025/07/10",
     source: "桃園電子報",
     url: "https://tyenews.com/2025/07/903380/",
-    icon: "🥇"
+    icon: "🥇",
   },
   {
     title: "拉拉山水蜜桃達人：果農周峻儀的土地關懷與心路歷程",
     date: "2024/08/15",
     source: "PeoPo 公民新聞",
     url: "https://www.peopo.org/news/814641/",
-    icon: "🎥"
-  }
+    icon: "🎥",
+  },
 ];
 ---
 
@@ -89,11 +97,20 @@ const mediaReports = [
   />
 
   <!-- 開放採果橫幅 -->
-  <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white py-3 px-4">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+  <div
+    class="bg-gradient-to-r from-emerald-600 to-emerald-500 text-white py-3 px-4"
+  >
+    <div
+      class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2"
+    >
       <div class="flex items-center gap-3">
-        <span class="bg-white text-emerald-600 text-xs font-black px-3 py-1 rounded-full">開放採果</span>
-        <span class="font-bold text-sm sm:text-base">🍑 2026 拉拉山水蜜桃產季開始！歡迎團體、散客 LINE 報名採果</span>
+        <span
+          class="bg-white text-emerald-600 text-xs font-black px-3 py-1 rounded-full"
+          >開放採果</span
+        >
+        <span class="font-bold text-sm sm:text-base"
+          >🍑 2026 拉拉山水蜜桃產季開始！歡迎團體、散客 LINE 報名採果</span
+        >
       </div>
       <a
         href="/pick-your-own"
@@ -124,7 +141,7 @@ const mediaReports = [
         <div
           class="inline-block bg-pink-600 text-white px-6 py-2 rounded-full text-lg font-bold animate-bounce shadow-xl mb-6"
         >
-          🏆 榮獲 拉拉山「水蜜桃王」最高殊榮
+          🏆 榮獲 拉拉山「水蜜桃王」「甜度王」雙料最高殊榮
         </div>
 
         <h1
@@ -136,7 +153,8 @@ const mediaReports = [
         <p
           class="text-lg lg:text-xl text-gray-200 mb-10 leading-relaxed max-w-lg"
         >
-          海拔 1500 公尺的堅持。現在開放採果體驗，您可以現場品嚐、親手採摘，感受從樹上到嘴裡的第一口鮮甜。
+          海拔 1500
+          公尺的堅持。現在開放採果體驗，您可以現場品嚐、親手採摘，感受從樹上到嘴裡的第一口鮮甜。
         </p>
 
         <div class="flex flex-wrap gap-4">
@@ -193,8 +211,9 @@ const mediaReports = [
           <h2 class="text-3xl font-bold text-slate-900">當季限定禮盒</h2>
           <p class="text-slate-500 mt-2">每一顆都是果園產地直送的驕傲</p>
         </div>
-        <a href="https://shop.mrpeach.com.tw/shop" class="text-pink-600 font-bold hover:underline"
-          >查看全部規格 →</a
+        <a
+          href="https://shop.mrpeach.com.tw/shop"
+          class="text-pink-600 font-bold hover:underline">查看全部規格 →</a
         >
       </div>
 
@@ -279,9 +298,9 @@ const mediaReports = [
       <div class="grid md:grid-cols-3 gap-8">
         {
           mediaReports.map((report) => (
-            <a 
-              href={report.url} 
-              target="_blank" 
+            <a
+              href={report.url}
+              target="_blank"
               rel="noopener noreferrer"
               class="group bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all"
             >
