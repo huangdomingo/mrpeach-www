@@ -7,6 +7,7 @@ description: 水蜜桃套袋是疏果之後、採收之前最關鍵的保護工�
 author: 阿義老闆
 order: 10
 relatedArticles: []
+image: "../../assets/products/peach-tree-bagged-fruit-branches.jpg"
 ---
 
 # 🍑 水蜜桃套袋：防蟲防鳥防風雨，阿義老闆的實戰經驗
