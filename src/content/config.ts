@@ -46,9 +46,11 @@ const encyclopediaCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      description: z.string(),
+      description: z.string().optional(),
       category: z.string(),
       tags: z.array(z.string()).default([]),
+      pubDate: z.date().optional(),
+      author: z.string().default("阿義老闆"),
       order: z.number().default(99),
       relatedArticles: z.array(z.string()).default([]),
       image: image().optional(),
