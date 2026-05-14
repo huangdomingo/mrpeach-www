@@ -9,13 +9,16 @@ import GoogleReviews from "../components/GoogleReviews.astro";
 import heroOwner from "../assets/hero/hero-peach-orchard.jpg";
 import logoImage from "../assets/lalashan-mrpeach-logo.png";
 
-// 2. 抓取商品與日記資料
+// 2. 抓取商品、日記、百科資料
 const products = (await getCollection("products"))
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 const latestDiary = (await getCollection("diary")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 )[0];
+const encyclopediaArticles = (await getCollection("encyclopedia"))
+  .sort((a, b) => (a.data.order || 99) - (b.data.order || 99))
+  .slice(0, 3);
 
 const pageTitle = "水蜜桃達人農場｜榮獲2025拉拉山水蜜桃王・高海拔產地直送";
 
@@ -342,6 +345,55 @@ const mediaReports = [
           >
             閱讀阿義老闆完整心情回顧
           </a>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    encyclopediaArticles.length > 0 && (
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="flex justify-between items-end mb-12">
+            <div>
+              <h2 class="text-3xl font-bold text-slate-900">🍑 水蜜桃百科</h2>
+              <p class="text-slate-500 mt-2">
+                從栽培到風味、從挑選到保存，系統性認識拉拉山水蜜桃
+              </p>
+            </div>
+            <a
+              href="/encyclopedia"
+              class="text-pink-600 font-bold hover:underline whitespace-nowrap"
+              >瀏覽全部文章 →</a
+            >
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            {
+              encyclopediaArticles.map((article) => (
+                <a
+                  href={`/encyclopedia/${article.slug}`}
+                  class="block bg-gray-50 rounded-2xl border border-slate-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all group"
+                >
+                  <div class="text-pink-600 text-sm font-bold mb-3">
+                    {article.data.category}
+                  </div>
+                  <h3 class="text-lg font-bold text-slate-900 group-hover:text-pink-600 mb-3 leading-snug">
+                    {article.data.title}
+                  </h3>
+                  <p class="text-slate-500 text-sm line-clamp-2 mb-4">
+                    {article.data.description}
+                  </p>
+                  <div class="flex items-center text-pink-600 text-sm font-bold">
+                    閱讀全文
+                    <span class="ml-2 group-hover:translate-x-1 transition-transform"
+                      >→</span
+                    >
+                  </div>
+                </a>
+              ))
+            }
+          </div>
         </div>
       </section>
     )
