@@ -6,10 +6,11 @@ import { Image } from "astro:assets";
 // ✅ 採果照片路徑請確認正確
 import pickPhoto from "../assets/hero/pick-your-own.jpg";
 
-const pageTitle = "預約採果｜拉拉山水蜜桃達人農場";
+const pageTitle = "拉拉山採水蜜桃體驗・預約｜水蜜桃達人農場";
+const pageDescription = "2026 拉拉山採水蜜桃開放預約！親手走入果園摘水蜜桃，入園費 100 元全額折抵，一斤 300 元現採現秤。位於桃園復興區上巴陵，電話或 LINE 預約阿義老闆。";
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout title={pageTitle} description={pageDescription}>
   <main class="bg-white">
     <section class="bg-slate-900 text-white">
       <div
@@ -22,7 +23,7 @@ const pageTitle = "預約採果｜拉拉山水蜜桃達人農場";
             📍 桃園復興區・上巴陵
           </div>
           <h1 class="text-4xl lg:text-6xl font-black leading-tight">
-            親手摘下<br /><span class="text-pink-400">拉拉山</span>的鮮甜
+            拉拉山採水蜜桃<br /><span class="text-pink-400">親手摘下</span>鮮甜
           </h1>
 
           <p class="text-white/80 mt-6 text-lg leading-relaxed max-w-xl">
