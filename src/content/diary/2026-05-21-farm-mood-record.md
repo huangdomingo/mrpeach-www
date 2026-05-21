@@ -3,7 +3,7 @@ title: "〈LINE 破五千、採果笑聲、冷鏈出貨開跑——這幾天又�
 pubDate: 2026-05-21
 description: "拉拉山水蜜桃達人阿義產地日誌：LINE 好友突破 5000 人、黑貓宅急便全程冷鏈從 5/20 正式出貨、採果重新開放、五月桃趁晴天趕採——忙到飛起來，但每一件都值得。"
 author: "阿義"
-image: "../../assets/hero/pick-your-own.jpg"
+image: "../../assets/hero/farm-harvest-packing-family-picking.jpg"
 ---
 
 這幾天說忙，真的忙。說開心，也真的開心。
