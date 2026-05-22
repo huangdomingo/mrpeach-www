@@ -79,7 +79,10 @@ if (API_KEY) {
   }
 }
 
-const reviews = placeDetails?.reviews ?? [];
+// Places API (New) 預設回傳「最相關」排序，改按 publishTime 降冪（最新在前）
+const reviews = (placeDetails?.reviews ?? []).sort(
+  (a, b) => new Date(b.publishTime).getTime() - new Date(a.publishTime).getTime()
+);
 const avgRating = placeDetails?.rating ?? 0;
 const totalCount = placeDetails?.userRatingCount ?? 0;
 
