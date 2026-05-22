@@ -2,53 +2,49 @@
 /**
  * GoogleReviews.astro
  * Build 時從 Google Places API 抓取評論，靜態嵌入頁面（對 SEO 最有利）
+ *
+ * 注意：使用舊版 Places API（maps.googleapis.com/maps/api/place/details/json）
+ * 因為新版 Places API (New) 只回傳「最相關」的 5 則評論，不支援最新排序。
+ * 舊版支援 reviews_sort=newest，可取得最新的 5 則評論。
  */
 
 const API_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
 // GOOGLE_PLACE_ID 選填：若未設定，會自動用農場名稱搜尋
 let PLACE_ID = import.meta.env.GOOGLE_PLACE_ID as string | undefined;
 
-interface Review {
+interface OldReview {
+  author_name: string;
+  profile_photo_url: string;
   rating: number;
-  relativePublishTimeDescription: string;
-  text?: { text: string };
-  authorAttribution: {
-    displayName: string;
-    photoUri: string;
-  };
-  publishTime: string;
+  relative_time_description: string;
+  text: string;
+  time: number; // Unix timestamp (seconds)
 }
 
-interface PlaceDetails {
-  displayName: { text: string };
+interface OldPlaceDetails {
   rating: number;
-  userRatingCount: number;
-  reviews: Review[];
+  user_ratings_total: number;
+  reviews: OldReview[];
 }
 
-let placeDetails: PlaceDetails | null = null;
+let placeDetails: OldPlaceDetails | null = null;
+let totalCount = 0;
+let avgRating = 0;
 
 if (API_KEY) {
   try {
-    // 若沒有 Place ID，用 Text Search 自動搜尋
+    // 第一步：若沒有 Place ID，用 Text Search 自動搜尋
     if (!PLACE_ID) {
       const findRes = await fetch(
-        "https://places.googleapis.com/v1/places:searchText",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Goog-Api-Key": API_KEY,
-            "X-Goog-FieldMask": "places.id,places.displayName",
-          },
-          body: JSON.stringify({
-            textQuery: "水蜜桃達人農場 拉拉山 桃園",
-            languageCode: "zh-TW",
-          }),
-        }
+        "https://maps.googleapis.com/maps/api/place/textsearch/json?" +
+        new URLSearchParams({
+          query: "水蜜桃達人農場 拉拉山 桃園",
+          key: API_KEY,
+          language: "zh-TW",
+        })
       );
       const findData = await findRes.json();
-      PLACE_ID = findData.places?.[0]?.id;
+      PLACE_ID = findData.results?.[0]?.place_id;
       if (PLACE_ID) {
         console.log(`[GoogleReviews] 找到 Place ID：${PLACE_ID}（建議存入 .env 的 GOOGLE_PLACE_ID 加速 build）`);
       } else {
@@ -56,22 +52,24 @@ if (API_KEY) {
       }
     }
 
+    // 第二步：用 place_id 取詳細資料（含最新評論）
     if (PLACE_ID) {
       const res = await fetch(
-        `https://places.googleapis.com/v1/places/${PLACE_ID}`,
-        {
-          headers: {
-            "X-Goog-Api-Key": API_KEY,
-            "X-Goog-FieldMask": "displayName,rating,userRatingCount,reviews",
-            "Accept-Language": "zh-TW",
-          },
-        }
+        "https://maps.googleapis.com/maps/api/place/details/json?" +
+        new URLSearchParams({
+          place_id: PLACE_ID,
+          reviews_sort: "newest",     // ← 關鍵：最新排序
+          language: "zh-TW",
+          key: API_KEY,
+        })
       );
       const data = await res.json();
-      if (data.displayName) {
-        placeDetails = data;
+      if (data.result) {
+        placeDetails = data.result;
+        avgRating = data.result.rating ?? 0;
+        totalCount = data.result.user_ratings_total ?? 0;
       } else {
-        console.warn("[GoogleReviews] Places API (New) 回傳異常：", JSON.stringify(data));
+        console.warn("[GoogleReviews] Places API 回傳異常：", JSON.stringify(data).slice(0, 500));
       }
     }
   } catch (e) {
@@ -79,18 +77,7 @@ if (API_KEY) {
   }
 }
 
-// Places API (New) 預設回傳「最相關」排序，改按 publishTime 降冪（最新在前）
-const reviews = (placeDetails?.reviews ?? []).sort(
-  (a, b) => new Date(b.publishTime).getTime() - new Date(a.publishTime).getTime()
-);
-const avgRating = placeDetails?.rating ?? 0;
-const totalCount = placeDetails?.userRatingCount ?? 0;
-
-function renderStars(rating: number): string {
-  return "★".repeat(Math.round(rating)) + "☆".repeat(5 - Math.round(rating));
-}
-
-// Schema.org 結構化資料（讓 Google 搜尋結果顯示星星評分）
+const reviews = placeDetails?.reviews ?? [];
 const reviewsSchema = placeDetails ? {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -106,7 +93,7 @@ const reviewsSchema = placeDetails ? {
     "@type": "Review",
     "author": {
       "@type": "Person",
-      "name": r.authorAttribution.displayName
+      "name": r.author_name
     },
     "reviewRating": {
       "@type": "Rating",
@@ -114,10 +101,14 @@ const reviewsSchema = placeDetails ? {
       "bestRating": "5",
       "worstRating": "1"
     },
-    "reviewBody": r.text?.text ?? "",
-    "datePublished": r.publishTime.split("T")[0]
+    "reviewBody": r.text ?? "",
+    "datePublished": new Date(r.time * 1000).toISOString().split("T")[0]
   }))
 } : null;
+
+function renderStars(rating: number): string {
+  return "★".repeat(Math.round(rating)) + "☆".repeat(5 - Math.round(rating));
+}
 ---
 
 {reviews.length > 0 && (
@@ -150,8 +141,8 @@ const reviewsSchema = placeDetails ? {
             <div class="bg-gray-50 rounded-2xl p-6 border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center gap-3">
                 <img
-                  src={review.authorAttribution.photoUri}
-                  alt={review.authorAttribution.displayName}
+                  src={review.profile_photo_url}
+                  alt={review.author_name}
                   class="w-10 h-10 rounded-full object-cover"
                   loading="lazy"
                   width="40"
@@ -159,15 +150,15 @@ const reviewsSchema = placeDetails ? {
                   referrerpolicy="no-referrer"
                 />
                 <div>
-                  <p class="font-bold text-slate-800 text-sm">{review.authorAttribution.displayName}</p>
-                  <p class="text-xs text-slate-400">{review.relativePublishTimeDescription}</p>
+                  <p class="font-bold text-slate-800 text-sm">{review.author_name}</p>
+                  <p class="text-xs text-slate-400">{review.relative_time_description}</p>
                 </div>
               </div>
               <div class="text-yellow-400 text-lg" aria-label={`${review.rating} 顆星`}>
                 {renderStars(review.rating)}
               </div>
-              {review.text?.text && (
-                <p class="text-slate-700 text-sm leading-relaxed line-clamp-4">{review.text.text}</p>
+              {review.text && (
+                <p class="text-slate-700 text-sm leading-relaxed line-clamp-4">{review.text}</p>
               )}
             </div>
           ))}
