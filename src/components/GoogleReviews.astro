@@ -89,7 +89,7 @@ const reviewsSchema = placeDetails ? {
     "bestRating": "5",
     "worstRating": "1"
   },
-  "review": reviews.slice(0, 5).map((r) => ({
+  "review": reviews.slice(0, 3).map((r) => ({
     "@type": "Review",
     "author": {
       "@type": "Person",
@@ -137,7 +137,7 @@ function renderStars(rating: number): string {
 
         <!-- 評論卡片 -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.slice(0, 6).map((review) => (
+          {reviews.slice(0, 3).map((review) => (
             <div class="bg-gray-50 rounded-2xl p-6 border border-slate-100 flex flex-col gap-3">
               <div class="flex items-center gap-3">
                 <img
