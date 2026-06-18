@@ -1,6 +1,6 @@
 ---
 title: "豪華豐盛 10 粒裝禮盒"
-price: 600
+price: 650
 spec: "2台斤~2台斤8兩 / 盒"
 image: "../../assets/products/peach-box-10.jpg"
 description: "分享最方便！顆數剛好好分配的水蜜桃禮盒，適合公司團購、家族聚會與多人品嚐。"
