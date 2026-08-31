@@ -4,7 +4,9 @@ import { getCollection, render } from "astro:content";
 import { Image, getImage } from "astro:assets";
 
 export async function getStaticPaths() {
-  const products = await getCollection("products");
+  const products = (await getCollection("products")).filter(
+    (post) => post.data.isAvailable !== false,
+  );
   return products.map((post) => ({
     params: { slug: post.slug },
     props: { post },
