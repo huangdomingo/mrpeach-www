@@ -4,7 +4,7 @@ price: 500
 spec: "3 包／組"
 imageEmoji: "🍑"
 description: "水蜜桃乾三包一組，平均一包不到 167 元，最划算。"
-order: 9
+order: 11
 isAvailable: true
 ---
 

@@ -4,7 +4,7 @@ price: 800
 spec: "5 粒／盒｜特大果"
 imageEmoji: "🍐"
 description: "高山特大馥梨，果肉細緻多汁，香甜清脆，送禮最有份量。"
-order: 6
+order: 8
 isAvailable: true
 ---
 

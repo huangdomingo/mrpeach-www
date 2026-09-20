@@ -4,7 +4,7 @@ price: 200
 spec: "1 包"
 imageEmoji: "🍑"
 description: "拉拉山水蜜桃低溫烘焙果乾，濃縮整顆水蜜桃的香甜。"
-order: 8
+order: 10
 isAvailable: true
 ---
 

@@ -4,7 +4,7 @@ price: 500
 spec: "6 粒／盒｜特大果"
 imageEmoji: "🍎"
 description: "高山特大蘋果，脆甜多汁、香氣濃郁，季節限定。"
-order: 7
+order: 9
 isAvailable: true
 ---
 
