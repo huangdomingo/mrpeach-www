@@ -2,6 +2,7 @@
 title: "甘露水梨｜大 5 顆禮盒"
 price: 700
 spec: "5 顆／禮盒｜單顆約 520~600g"
+image: "../../assets/products/water-pear-05.jpg"
 imageEmoji: "🍐"
 description: "甘露水梨小盒裝，清甜多汁、口感鮮脆，自己吃剛剛好。"
 order: 7
