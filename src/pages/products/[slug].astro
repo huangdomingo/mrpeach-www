@@ -16,12 +16,18 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-// 取得商品圖的完整 URL，供 OG 標籤使用
-const processed = await getImage({ src: post.data.image, width: 1200, height: 630 });
-const ogImageUrl = new URL(processed.src, Astro.site).href;
+// 取得商品圖的完整 URL，供 OG 標籤使用（無圖時退回全站預設圖）
+const ogImageUrl = post.data.image
+  ? new URL(
+      (
+        await getImage({ src: post.data.image, width: 1200, height: 630 })
+      ).src,
+      Astro.site,
+    ).href
+  : `${Astro.site}og-image.jpg`;
 
 // 商品 description：結合規格與原有描述文字
-const ogDescription = `${post.data.spec}｜拉拉山高海拔水蜜桃，產地直送。${post.data.description}`;
+const ogDescription = `${post.data.spec}｜拉拉山上巴陵專業甜柿，可以連皮吃、不甜可以退貨、產地直送。${post.data.description}`;
 ---
 
 <BaseLayout
@@ -36,11 +42,17 @@ const ogDescription = `${post.data.spec}｜拉拉山高海拔水蜜桃，產地�
         <div
           class="rounded-3xl overflow-hidden shadow-2xl border border-gray-100"
         >
-          <Image
-            src={post.data.image}
-            alt={post.data.title}
-            class="w-full h-auto object-cover"
-          />
+          {post.data.image ? (
+            <Image
+              src={post.data.image}
+              alt={post.data.title}
+              class="w-full h-auto object-cover"
+            />
+          ) : (
+            <div class="aspect-square flex items-center justify-center bg-linear-to-br from-amber-50 to-orange-100 text-[10rem]">
+              {post.data.imageEmoji}
+            </div>
+          )}
         </div>
 
         <div class="flex flex-col">
@@ -57,17 +69,34 @@ const ogDescription = `${post.data.spec}｜拉拉山高海拔水蜜桃，產地�
             <span class="text-3xl font-black text-pink-600"
               >NT$ {post.data.price}</span
             >
-            <span class="text-slate-500 line-through text-sm"
-              >原價 NT$ {post.data.price + 100}</span
-            >
+            <span class="text-slate-500 text-sm">{post.data.spec}</span>
           </div>
 
-          <div class="bg-pink-50 border border-pink-100 p-4 rounded-2xl mb-8">
-            <p class="text-pink-800 text-sm font-bold flex items-center gap-2">
-              <span class="bg-pink-600 text-white text-xs px-2 py-0.5 rounded"
-                >優惠活動</span
-              >
-              訂購滿 10 盒水蜜桃，寄送同一住址享免運費！
+          <div
+            class="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl mb-6"
+          >
+            <p class="text-emerald-900 text-sm font-bold mb-2">
+              🍊 我們的甜柿
+            </p>
+            <ul class="text-emerald-800 text-sm space-y-1">
+              <li>✔ 甜柿可以連皮吃，比市面上的甜柿更甜</li>
+              <li>✔ 保證甜，不甜退錢（NG 商品恕不退換）</li>
+              <li>✔ 拉拉山上巴陵高海拔產地直送</li>
+            </ul>
+          </div>
+
+          <div
+            class="bg-amber-50 border border-amber-100 p-5 rounded-2xl mb-8"
+          >
+            <p class="text-amber-900 text-sm font-bold mb-3">
+              🚚 冷藏宅配運費
+            </p>
+            <ul class="text-amber-800 text-sm space-y-1">
+              <li><b>甜柿</b>：1 盒 150 元｜2~3 盒 225 元｜4~5 盒 290 元｜<b>6 盒免運</b></li>
+              <li><b>馥梨・蘋果・水蜜桃乾</b>：1 盒 150 元｜2~3 盒 225 元｜4~7 盒 290 元｜<b>8 盒免運</b></li>
+            </ul>
+            <p class="text-amber-700 text-xs mt-3">
+              運費依同一次寄送的總盒數合併計算；免運費以單一件（同一收件地址）為限。
             </p>
           </div>
 
@@ -113,7 +142,7 @@ const ogDescription = `${post.data.spec}｜拉拉山高海拔水蜜桃，產地�
                 { step: "確認訂單", icon: "✅" },
                 { step: "完成付款", icon: "💰" },
                 { step: "冷藏宅配", icon: "🚚" },
-                { step: "鮮甜到府", icon: "🍑" },
+                { step: "鮮甜到府", icon: "🍊" },
               ].map((item, index) => (
                 <div class="relative p-4">
                   <div class="text-3xl mb-2">{item.icon}</div>
@@ -147,11 +176,15 @@ const ogDescription = `${post.data.spec}｜拉拉山高海拔水蜜桃，產地�
           <ul class="space-y-4 text-sm text-slate-600">
             <li class="flex items-start gap-2">
               <span class="text-pink-500">●</span>
-              水蜜桃表面有一層薄薄的保護毛，這是新鮮的象徵，食用前建議清洗掉絨毛。
+              甜柿<b>可以連皮一起吃</b>，清洗後即可享用。
             </li>
             <li class="flex items-start gap-2">
               <span class="text-pink-500">●</span>
-              為避免路途遙遠損傷，線上訂購會挑選 7~8 分熟度寄出。
+              宅配以冷藏寄送，收到後請置於陰涼通風處或冷藏保存。
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-pink-500">●</span>
+              <b>不甜可以退貨</b>；NG 惜福商品恕不退換貨。
             </li>
             <li class="flex items-start gap-2">
               <span class="text-pink-500">●</span>

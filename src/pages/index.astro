@@ -22,7 +22,8 @@ const encyclopediaArticles = (await getCollection("encyclopedia"))
   .slice(0, 3);
 
 const pageTitle = "拉拉山水蜜桃達人農場｜水蜜桃王・採果體驗・產地直送";
-const pageDescription = "拉拉山水蜜桃達人農場，位於上巴陵海拔1400–1600公尺。阿義老闆三十年種植，榮獲水蜜桃王殊榮。2026產季已結束，感謝支持，期待明年再相見。";
+const pageDescription =
+  "拉拉山專業甜柿開放訂購！位於上巴陵海拔1400–1600公尺，阿義老闆三十年種植，榮獲水蜜桃王殊榮。甜柿可連皮吃、比市面上甜、不甜可退貨，6 盒免運。";
 
 // 3. LocalBusiness 結構化資料（取代舊的 AgricultureService）
 const localBusinessSchema = {
@@ -31,7 +32,7 @@ const localBusinessSchema = {
   name: "水蜜桃達人農場",
   alternateName: "拉拉山水蜜桃達人",
   description:
-    "位於拉拉山上巴陵，海拔1,400至1,600公尺的高山水蜜桃農場。傳承三十年種植技術，榮獲拉拉山水蜜桃王。2026年產季已結束。",
+    "位於拉拉山上巴陵，海拔1,400至1,600公尺的高山農場。傳承三十年種植技術，榮獲拉拉山水蜜桃王。甜柿產季開放訂購與採果。",
   award: "拉拉山水蜜桃王",
   url: "https://www.mrpeach.com.tw",
   telephone: "+886-934-195-496",
@@ -101,19 +102,24 @@ const mediaReports = [
     set:html={JSON.stringify(localBusinessSchema)}
   />
 
-  <!-- 產季結束橫幅 -->
+  <!-- 產季開跑橫幅 -->
   <div
-    class="bg-linear-to-r from-slate-600 to-slate-500 text-white py-3 px-4"
+    class="bg-linear-to-r from-amber-600 to-amber-500 text-white py-3 px-4"
   >
     <div
       class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-center"
     >
       <span
-        class="bg-white text-slate-600 text-xs font-black px-3 py-1 rounded-full"
-        >本季已結束</span
+        class="bg-white text-amber-600 text-xs font-black px-3 py-1 rounded-full"
+        >產季開跑</span
       >
       <span class="font-bold text-sm sm:text-base"
-        >🍑 2026 水蜜桃產季已結束，感謝大家的支持！期待明年再相見</span
+        >🍊 專業甜柿開放訂購！可以連皮吃、比市面上甜、不甜可以退貨</span
+      >
+      <a
+        href="/products"
+        class="sm:ml-2 bg-white/20 hover:bg-white/30 border border-white/40 text-white text-xs font-bold px-3 py-1 rounded-full transition"
+        >立即選購 →</a
       >
     </div>
   </div>
@@ -150,10 +156,16 @@ const mediaReports = [
         <p
           class="text-lg lg:text-xl text-gray-200 mb-10 leading-relaxed max-w-lg"
         >
-          海拔 1500 公尺的堅持。本季水蜜桃已售完，感謝大家的支持，明年產季再相見。
+          海拔 1500 公尺的堅持。專業甜柿產季開跑，可以連皮吃、比市面上更甜，不甜可以退貨。
         </p>
 
         <div class="flex flex-wrap gap-4">
+          <a
+            href="/products"
+            class="bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl"
+          >
+            🍊 訂購專業甜柿
+          </a>
           <a
             href="/about-orchard"
             class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold text-lg transition"
@@ -192,16 +204,20 @@ const mediaReports = [
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex justify-between items-end mb-12">
         <div>
-          <h2 class="text-3xl font-bold text-slate-900">本季已結束</h2>
-          <p class="text-slate-500 mt-2">2026 水蜜桃產季已結束，感謝支持！明年再相見</p>
+          <h2 class="text-3xl font-bold text-slate-900">🍊 專業甜柿・開放訂購</h2>
+          <p class="text-slate-500 mt-2">
+            拉拉山上巴陵產地直送，可以連皮吃、不甜可以退貨
+          </p>
         </div>
       </div>
 
       {products.length === 0 && (
         <div class="text-center py-16">
-          <p class="text-6xl mb-6">🍑</p>
-          <h3 class="text-2xl font-bold text-slate-900 mb-3">明年見！</h3>
-          <p class="text-slate-600">水蜜桃已全數售完，明年產季再相見。</p>
+          <p class="text-6xl mb-6">🍊</p>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">甜柿準備中</h3>
+          <p class="text-slate-600">
+            甜柿即將開放訂購，歡迎先加入 LINE 或來電 0975-167-080 洽詢。
+          </p>
         </div>
       )}
       {products.length > 0 && (
@@ -210,11 +226,17 @@ const mediaReports = [
           products.map((product) => (
             <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all">
               <div class="aspect-square overflow-hidden bg-gray-100">
-                <Image
-                  src={product.data.image}
-                  alt={product.data.title}
-                  class="w-full h-full object-cover"
-                />
+                {product.data.image ? (
+                  <Image
+                    src={product.data.image}
+                    alt={product.data.title}
+                    class="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-amber-50 to-orange-100 text-7xl">
+                    {product.data.imageEmoji}
+                  </div>
+                )}
               </div>
               <div class="p-8">
                 <h3 class="text-xl font-bold text-slate-900 mb-2">
@@ -255,7 +277,7 @@ const mediaReports = [
             { step: "確認訂單", icon: "✅" },
             { step: "完成付款", icon: "💰" },
             { step: "冷藏宅配", icon: "🚚" },
-            { step: "交易完成", icon: "桃" },
+            { step: "交易完成", icon: "柿" },
           ].map((item, index) => (
             <div class="relative">
               <div class="w-16 h-16 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow-inner">

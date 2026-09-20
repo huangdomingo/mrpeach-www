@@ -7,25 +7,36 @@ const products = (await getCollection("products"))
   .filter((product) => product.data.isAvailable !== false)
   .sort((a, b) => a.data.order - b.data.order);
 
-const pageTitle = "商品導購｜拉拉山水蜜桃達人農場";
+const pageTitle = "商品導購｜拉拉山專業甜柿・水蜜桃達人農場";
+const pageDescription =
+  "拉拉山上巴陵專業甜柿開放訂購！特大 6 粒裝 700 元起，可連皮吃、比市面上甜，不甜可退貨。1 盒運費 150 元、6 盒免運。";
 ---
 
-<BaseLayout title={pageTitle}>
-  <section class="bg-pink-50 py-12 lg:py-20">
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="bg-amber-50 py-12 lg:py-20">
     <div class="max-w-7xl mx-auto px-4 text-center">
+      <div
+        class="inline-block bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-4"
+      >
+        🍊 產季開跑
+      </div>
       <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-        本季已結束
+        專業甜柿，開放訂購
       </h1>
-      <p class="text-slate-600">2026 水蜜桃產季已結束，感謝大家的支持！期待明年再相見。</p>
+      <p class="text-slate-600">
+        拉拉山上巴陵產地直送｜可以連皮吃・比市面上甜・不甜可以退貨
+      </p>
     </div>
   </section>
 
   <section class="max-w-7xl mx-auto px-4 py-16">
     {products.length === 0 && (
       <div class="text-center py-16">
-        <p class="text-6xl mb-6">🍑</p>
-        <h2 class="text-2xl font-bold text-slate-900 mb-3">明年見！</h2>
-        <p class="text-slate-600">水蜜桃已全數售完，明年產季再相見。</p>
+        <p class="text-6xl mb-6">🍊</p>
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">甜柿準備中</h2>
+        <p class="text-slate-600">
+          甜柿即將開放訂購，歡迎先加入 LINE 或來電 0975-167-080 洽詢。
+        </p>
       </div>
     )}
     {products.length > 0 && (
@@ -34,11 +45,17 @@ const pageTitle = "商品導購｜拉拉山水蜜桃達人農場";
         products.map((product) => (
           <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-xl transition-all">
             <div class="aspect-square overflow-hidden bg-gray-100">
-              <Image
-                src={product.data.image}
-                alt={product.data.title}
-                class="w-full h-full object-cover"
-              />
+              {product.data.image ? (
+                <Image
+                  src={product.data.image}
+                  alt={product.data.title}
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-amber-50 to-orange-100 text-7xl">
+                  {product.data.imageEmoji}
+                </div>
+              )}
             </div>
             <div class="p-8 flex-grow flex flex-col">
               <h2 class="text-xl font-bold text-slate-900 mb-2">
@@ -68,5 +85,61 @@ const pageTitle = "商品導購｜拉拉山水蜜桃達人農場";
       }
       </div>
     )}
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 pb-20">
+    <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 lg:p-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <span class="text-amber-500">🚚</span> 冷藏宅配運費
+      </h2>
+
+      <h3 class="font-bold text-slate-900 mb-3">🍊 甜柿</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mb-8">
+        <div class="bg-slate-50 rounded-2xl p-5">
+          <div class="text-sm text-slate-500 mb-1">1 盒</div>
+          <div class="text-2xl font-black text-slate-900">150<span class="text-sm"> 元</span></div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-5">
+          <div class="text-sm text-slate-500 mb-1">2~3 盒</div>
+          <div class="text-2xl font-black text-slate-900">225<span class="text-sm"> 元</span></div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-5">
+          <div class="text-sm text-slate-500 mb-1">4~5 盒</div>
+          <div class="text-2xl font-black text-slate-900">290<span class="text-sm"> 元</span></div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <div class="text-sm text-amber-700 mb-1">6 盒</div>
+          <div class="text-2xl font-black text-amber-600">免運費</div>
+        </div>
+      </div>
+
+      <h3 class="font-bold text-slate-900 mb-3">🍐 馥梨・🍎 蘋果・🍑 水蜜桃乾</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="bg-slate-50 rounded-2xl p-5">
+          <div class="text-sm text-slate-500 mb-1">1 盒</div>
+          <div class="text-2xl font-black text-slate-900">150<span class="text-sm"> 元</span></div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-5">
+          <div class="text-sm text-slate-500 mb-1">2~3 盒</div>
+          <div class="text-2xl font-black text-slate-900">225<span class="text-sm"> 元</span></div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-5">
+          <div class="text-sm text-slate-500 mb-1">4~7 盒</div>
+          <div class="text-2xl font-black text-slate-900">290<span class="text-sm"> 元</span></div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <div class="text-sm text-amber-700 mb-1">8 盒</div>
+          <div class="text-2xl font-black text-amber-600">免運費</div>
+        </div>
+      </div>
+
+      <p class="text-slate-500 text-sm mt-6">
+        運費依同一次寄送的總盒數合併計算；免運費以單一件（同一收件地址）為限。
+      </p>
+      <div class="mt-8 pt-8 border-t border-slate-100 grid sm:grid-cols-2 gap-4 text-sm text-slate-600">
+        <div>✔ 甜柿可以連皮吃，比市面上甜</div>
+        <div>✔ 保證甜，不甜退錢（NG 商品恕不退換）</div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
