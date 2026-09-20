@@ -2,6 +2,7 @@
 title: "水蜜桃乾｜3 包優惠組"
 price: 500
 spec: "3 包／組"
+image: "../../assets/products/dried-peach.jpg"
 imageEmoji: "🍑"
 description: "水蜜桃乾三包一組，平均一包不到 167 元，最划算。"
 order: 11

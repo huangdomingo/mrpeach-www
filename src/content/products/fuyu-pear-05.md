@@ -5,7 +5,7 @@ spec: "5 粒／盒｜特大果"
 imageEmoji: "🍐"
 description: "高山特大馥梨，果肉細緻多汁，香甜清脆，送禮最有份量。"
 order: 8
-isAvailable: true
+isAvailable: false
 ---
 
 拉拉山上巴陵的高山馥梨，特大果規格，一盒 5 粒。
