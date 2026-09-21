@@ -1,26 +1,27 @@
 ---
 // src/pages/pick-your-own.astro
+// 採果體驗入口頁：水蜜桃產季已結束，當季請看甜柿採果專頁
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 
-// ✅ 採果照片路徑請確認正確
 import pickPhoto from "../assets/hero/pick-your-own.jpg";
 
-const pageTitle = "拉拉山採甜柿體驗・預約｜水蜜桃達人農場";
+const pageTitle = "拉拉山採果體驗｜水蜜桃產季已結束・甜柿採果開放中";
 const pageDescription =
-  "拉拉山甜柿採果開放中！位於桃園復興區上巴陵，歡迎來電 0975-167-080 預約，甜柿可以連皮吃、比市面上甜。";
+  "拉拉山水蜜桃採果 2026 產季已結束。目前開放的是甜柿採果，位於桃園復興區上巴陵，歡迎來電 0975-167-080 預約。";
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <main class="bg-white">
-    <div class="bg-amber-50 border-b border-amber-200 text-amber-800 py-4 px-4">
-      <div class="max-w-7xl mx-auto text-center font-bold">
-        🍊 甜柿產季開跑！採果體驗開放中，歡迎來電 0975-167-080 預約！
+    <div class="bg-amber-500 text-white py-4 px-4">
+      <div class="max-w-7xl mx-auto text-center font-bold text-sm sm:text-base">
+        🍊 甜柿採果開放中！水蜜桃採果產季已結束，歡迎前往甜柿採果專頁
       </div>
     </div>
+
     <section class="bg-slate-900 text-white">
       <div
-        class="max-w-7xl mx-auto px-6 pt-16 lg:pt-24 pb-12 grid lg:grid-cols-2 gap-12 items-center"
+        class="max-w-7xl mx-auto px-6 pt-16 lg:pt-24 pb-16 grid lg:grid-cols-2 gap-12 items-center"
       >
         <div>
           <div
@@ -29,54 +30,51 @@ const pageDescription =
             📍 桃園復興區・上巴陵
           </div>
           <h1 class="text-4xl lg:text-6xl font-black leading-tight">
-            拉拉山採甜柿<br /><span class="text-amber-400">親手摘下</span>鮮甜
+            拉拉山採果體驗
           </h1>
 
           <p class="text-white/80 mt-6 text-lg leading-relaxed max-w-xl">
-            拉拉山甜柿季限定體驗！您可以現場走入果園，親自挑選並採摘碩大飽滿的甜柿，感受大地的回報。
-            <br /><br />
-            <span class="font-bold text-pink-300"
-              >⚠️ 採果須知：採果當日請先電話預約；下雨天不開放（避免斜坡滑倒）。</span
-            >
+            <span class="font-bold text-amber-300"
+              >🍑 2026 水蜜桃採果產季已結束</span
+            >，感謝大家的支持，明年產季再相見。<br /><br />
+            現在開放的季節性採果是 <span class="font-bold text-amber-300"
+              >🍊 專業甜柿</span
+            >——可以連皮吃、比市面上甜、不甜可以退貨。
           </p>
 
           <div class="mt-10 flex flex-wrap gap-4">
             <a
-              href="tel:+886975167080"
-              class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-full font-bold transition shadow-lg flex items-center gap-2"
+              href="/persimmon-picking"
+              class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold transition shadow-lg flex items-center gap-2"
             >
-              📞 電話預約採果
+              🍊 前往甜柿採果專頁
             </a>
-
+            <a
+              href="tel:+886975167080"
+              class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full font-bold transition flex items-center gap-2"
+            >
+              📞 0975-167-080
+            </a>
             <a
               href="https://line.me/ti/p/~0975167080"
               target="_blank"
               rel="noopener noreferrer"
               class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-bold transition shadow-lg flex items-center gap-2"
             >
-              💬 一鍵加 LINE 詢問
-            </a>
-
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=拉拉山水蜜桃達人農場"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full font-bold transition flex items-center gap-2"
-            >
-              📍 Google 導航
+              💬 一鍵加 LINE
             </a>
           </div>
-
-          <p class="mt-6 text-sm text-white/50">
-            * 提醒：山區收訊不穩，建議先下載離線地圖。
-          </p>
         </div>
 
         <div
-          class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm"
+          class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm lg:order-last"
         >
-          <h2 class="text-2xl font-black text-pink-400 mb-6">採果重點摘要</h2>
+          <h2 class="text-2xl font-black text-amber-400 mb-6">採果重點摘要</h2>
           <ul class="space-y-4 text-white/90">
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500">✔</span>
+              <span><strong>當季開放：</strong>專業甜柿（水蜜桃已結束）</span>
+            </li>
             <li class="flex items-start gap-3">
               <span class="text-emerald-500">✔</span>
               <span><strong>當日預約：</strong>0975-167-080 阿義老闆</span>
@@ -87,10 +85,6 @@ const pageDescription =
             </li>
             <li class="flex items-start gap-3">
               <span class="text-emerald-500">✔</span>
-              <span><strong>秤重計價：</strong>現場秤重，當季單價請洽詢</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-emerald-500">✔</span>
               <span><strong>穿著建議：</strong>請穿著運動鞋或防滑平底鞋</span>
             </li>
           </ul>
@@ -98,9 +92,7 @@ const pageDescription =
       </div>
 
       <div class="max-w-7xl mx-auto px-6 pb-20">
-        <div
-          class="rounded-3xl overflow-hidden shadow-2xl border border-white/10"
-        >
+        <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
           <Image
             src={pickPhoto}
             alt="拉拉山水蜜桃達人農場採果體驗實景"
@@ -110,21 +102,36 @@ const pageDescription =
       </div>
     </section>
 
+    <section class="py-20 bg-amber-50">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl lg:text-4xl font-black text-slate-900 mb-4">
+          現在開放：甜柿採果 🍊
+        </h2>
+        <p class="text-slate-600 mb-10">
+          專業甜柿產季開跑，可以連皮吃、比市面上甜、不甜可以退貨。
+        </p>
+        <a
+          href="/persimmon-picking"
+          class="inline-block bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full font-black transition shadow-xl"
+        >
+          看甜柿採果資訊與預約 →
+        </a>
+      </div>
+    </section>
+
     <section class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-3xl lg:text-4xl font-black text-slate-900">
-            簡單三步驟，展開採果行程
+            採果怎麼去？三步驟
           </h2>
         </div>
 
         <div class="grid lg:grid-cols-3 gap-8">
           <div
-            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group"
+            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden"
           >
-            <div
-              class="text-6xl font-black text-slate-100 absolute -top-2 -right-2 transition-colors group-hover:text-pink-50"
-            >
+            <div class="text-6xl font-black text-slate-100 absolute -top-2 -right-2">
               01
             </div>
             <h3 class="text-xl font-black text-slate-900 relative z-10 mb-4">
@@ -137,11 +144,9 @@ const pageDescription =
           </div>
 
           <div
-            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group"
+            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden"
           >
-            <div
-              class="text-6xl font-black text-slate-100 absolute -top-2 -right-2 transition-colors group-hover:text-pink-50"
-            >
+            <div class="text-6xl font-black text-slate-100 absolute -top-2 -right-2">
               02
             </div>
             <h3 class="text-xl font-black text-slate-900 relative z-10 mb-4">
@@ -154,11 +159,9 @@ const pageDescription =
           </div>
 
           <div
-            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group"
+            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden"
           >
-            <div
-              class="text-6xl font-black text-slate-100 absolute -top-2 -right-2 transition-colors group-hover:text-pink-50"
-            >
+            <div class="text-6xl font-black text-slate-100 absolute -top-2 -right-2">
               03
             </div>
             <h3 class="text-xl font-black text-slate-900 relative z-10 mb-4">
@@ -169,38 +172,6 @@ const pageDescription =
                 >阿義老闆</b
               > 領取採果籃。
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-20 bg-white">
-      <div class="max-w-5xl mx-auto px-6">
-        <div
-          class="bg-slate-900 rounded-[3rem] p-10 lg:p-16 text-white text-center shadow-2xl"
-        >
-          <h2 class="text-3xl font-black mb-8">費用與計價</h2>
-          <div class="grid md:grid-cols-2 gap-10">
-            <div
-              class="border-b md:border-b-0 md:border-r border-white/10 pb-10 md:pb-0 md:pr-10"
-            >
-              <div class="text-amber-400 text-3xl font-black mb-4">
-                請來電洽詢
-              </div>
-              <h3 class="text-xl font-bold mb-3">入園清潔費</h3>
-              <p class="text-white/60 text-sm">
-                甜柿採果之入園收費依當季公告為準<br />請來電 0975-167-080 或加 LINE 確認
-              </p>
-            </div>
-            <div>
-              <div class="text-emerald-400 text-3xl font-black mb-4">
-                現場秤重
-              </div>
-              <h3 class="text-xl font-bold mb-3">採果秤重 (斤)</h3>
-              <p class="text-white/60 text-sm">
-                親手採摘之甜柿現場秤重計價<br />當季單價請來電或 LINE 洽詢
-              </p>
-            </div>
           </div>
         </div>
       </div>

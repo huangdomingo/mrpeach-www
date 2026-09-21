@@ -8,6 +8,7 @@ import GoogleReviews from "../components/GoogleReviews.astro";
 // 1. 引入關鍵視覺圖
 import heroOwner from "../assets/hero/hero-peach-orchard.jpg";
 import logoImage from "../assets/lalashan-mrpeach-logo.png";
+import persimmonBox from "../assets/products/persimmon-boxed-6pcs-red-net.jpg";
 
 // 2. 抓取商品、日記、百科資料
 const products = (await getCollection("products"))
@@ -119,7 +120,12 @@ const mediaReports = [
       <a
         href="/products"
         class="sm:ml-2 bg-white/20 hover:bg-white/30 border border-white/40 text-white text-xs font-bold px-3 py-1 rounded-full transition"
-        >立即選購 →</a
+        >宅配訂購 →</a
+      >
+      <a
+        href="/persimmon-picking"
+        class="bg-white/20 hover:bg-white/30 border border-white/40 text-white text-xs font-bold px-3 py-1 rounded-full transition"
+        >預約採果 →</a
       >
     </div>
   </div>
@@ -165,6 +171,12 @@ const mediaReports = [
             class="bg-amber-500 hover:bg-amber-600 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl"
           >
             🍊 訂購專業甜柿
+          </a>
+          <a
+            href="/persimmon-picking"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl"
+          >
+            🌳 預約甜柿採果
           </a>
           <a
             href="/about-orchard"
@@ -262,6 +274,56 @@ const mediaReports = [
         }
       </div>
       )}
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-900">
+    <div
+      class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center"
+    >
+      <div class="text-white">
+        <span
+          class="inline-block bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-6"
+          >🍊 產季限定</span
+        >
+        <h2 class="text-3xl lg:text-4xl font-black mb-6 leading-tight">
+          來拉拉山，<br /><span class="text-amber-400">親手採甜柿</span>
+        </h2>
+        <p class="text-white/80 leading-relaxed mb-8">
+          甜柿產季開放採果！走入果園親手挑選樹上飽滿的甜柿，可以連皮吃、比市面上甜。
+          採果當日請先電話預約；下雨天不開放。
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/persimmon-picking"
+            class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold transition shadow-lg"
+          >
+            🍊 採果資訊與預約
+          </a>
+          <a
+            href="tel:+886975167080"
+            class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-bold transition"
+          >
+            📞 0975-167-080
+          </a>
+        </div>
+        <ul class="mt-8 space-y-2 text-white/70 text-sm">
+          <li>✔ 現場秤重計價，當季單價請洽詢</li>
+          <li>✔ 建議穿著運動鞋或防滑平底鞋</li>
+          <li>✔ 山區收訊不穩，建議先下載離線地圖</li>
+        </ul>
+      </div>
+
+      <a href="/persimmon-picking" class="block group">
+        <Image
+          src={persimmonBox}
+          alt="拉拉山專業甜柿採果"
+          class="w-full rounded-3xl shadow-2xl border border-white/10 group-hover:scale-[1.02] transition"
+        />
+        <p class="text-center text-white/50 text-sm mt-4">
+          看採果資訊、費用與交通方式 →
+        </p>
+      </a>
     </div>
   </section>
 

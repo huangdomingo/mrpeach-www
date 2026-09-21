@@ -1,0 +1,418 @@
+---
+// src/pages/persimmon-picking.astro
+// 甜柿採果體驗（獨立頁面）
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+import persimmonBig from "../assets/products/persimmon-boxed-6pcs-red-net.jpg";
+import persimmonMid from "../assets/products/persimmon-boxed-5pcs-red-net.jpg";
+import persimmonShare from "../assets/products/persimmon-boxed-8pcs-yellow-net.jpg";
+
+const pageTitle = "拉拉山甜柿採果體驗・預約｜水蜜桃達人農場";
+const pageDescription =
+  "拉拉山甜柿採果開放中！桃園復興區上巴陵，親手摘下飽滿的專業甜柿。甜柿可以連皮吃、比市面上甜、不甜可以退貨。採果當日請先電話 0975-167-080 預約，下雨不開放。";
+
+const highlights = [
+  { icon: "📞", title: "當日預約", text: "0975-167-080 阿義老闆（出發前先確認天氣）" },
+  { icon: "🧺", title: "現場採果", text: "專人帶領入園，親手挑選樹上飽滿甜柿" },
+  { icon: "⚖️", title: "現場秤重計價", text: "當季單價請來電或 LINE 洽詢" },
+  { icon: "🍊", title: "可連皮吃", text: "比市面上甜，不甜可以退貨" },
+  { icon: "👟", title: "穿著建議", text: "請穿運動鞋或防滑平底鞋（果園地面不平）" },
+  { icon: "🌧️", title: "雨天不開放", text: "為顧及斜坡安全，下雨天暫停採果" },
+];
+
+const faqs = [
+  {
+    q: "採果需要事先預約嗎？",
+    a: "需要。請於出發當日先致電 0975-167-080（阿義老闆）確認天氣與當日開放狀況，我們會為您安排入園時間。",
+  },
+  {
+    q: "入園費與計價方式？",
+    a: "入園清潔費與採果秤重單價依當季公告為準，請來電 0975-167-080 或加入 LINE 洽詢。現場採摘的甜柿會現場秤重計價。",
+  },
+  {
+    q: "下雨天可以採果嗎？",
+    a: "不行。山區果園地面為斜坡，為顧及安全，下雨天不開放採果。出發前請務必先來電確認。",
+  },
+  {
+    q: "甜柿可以連皮吃嗎？",
+    a: "可以。我們的專業甜柿可以連皮一起吃，清洗後即可享用，甜度比市面上的甜柿更突出。",
+  },
+  {
+    q: "產量少會不會採不到？",
+    a: "今年甜柿產量較少，建議提早預約。想在中秋送禮先出貨的，也可以先留言或來電，我們會優先為您排單。",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: "拉拉山水蜜桃達人農場・甜柿採果體驗",
+  description:
+    "桃園復興區上巴陵甜柿採果體驗，專業甜柿可以連皮吃、比市面上甜。採果當日請先電話預約，下雨不開放。",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "桃園市復興區",
+    addressRegion: "桃園市",
+    addressCountry: "TW",
+    streetAddress: "上巴陵",
+  },
+  telephone: "+886-975-167-080",
+  isAccessibleForFree: false,
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(schema)}
+  />
+
+  <main class="bg-white">
+    <!-- 頂部提示 -->
+    <div class="bg-amber-500 text-white py-4 px-4">
+      <div class="max-w-7xl mx-auto text-center font-bold text-sm sm:text-base">
+        🍊 甜柿產季開跑！採果體驗開放中 —— 請先來電 0975-167-080 預約
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="bg-slate-900 text-white relative overflow-hidden">
+      <div class="absolute inset-0 z-0 opacity-15">
+        <Image
+          src={persimmonBig}
+          alt="拉拉山專業甜柿"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-6 pt-16 lg:pt-24 pb-16 grid lg:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <div
+            class="inline-block bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-6"
+          >
+            📍 桃園復興區・上巴陵
+          </div>
+          <h1 class="text-4xl lg:text-6xl font-black leading-tight">
+            拉拉山採甜柿<br /><span class="text-amber-400">親手摘下</span
+            >飽滿鮮甜
+          </h1>
+
+          <p class="text-white/80 mt-6 text-lg leading-relaxed max-w-xl">
+            甜柿季限定體驗！走入果園，親手挑選樹上碩大飽滿的專業甜柿，感受大地的回報。
+            <br /><br />
+            <span class="font-bold text-amber-300"
+              >⚠️ 採果須知：採果當日請先電話預約；下雨天不開放（避免斜坡滑倒）。</span
+            >
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="tel:+886975167080"
+              class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-full font-bold transition shadow-lg flex items-center gap-2"
+            >
+              📞 電話預約採果
+            </a>
+            <a
+              href="https://line.me/ti/p/~0975167080"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-bold transition shadow-lg flex items-center gap-2"
+            >
+              💬 一鍵加 LINE 詢問
+            </a>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=拉拉山水蜜桃達人農場"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-8 py-4 rounded-full font-bold transition flex items-center gap-2"
+            >
+              📍 Google 導航
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-white/50">
+            * 山區收訊不穩，建議先下載離線地圖。
+          </p>
+        </div>
+
+        <div
+          class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm"
+        >
+          <h2 class="text-2xl font-black text-amber-400 mb-6">採果重點摘要</h2>
+          <ul class="space-y-4 text-white/90">
+            {
+              highlights.map((h) => (
+                <li class="flex items-start gap-3">
+                  <span class="text-lg leading-6">{h.icon}</span>
+                  <span>
+                    <strong>{h.title}：</strong>
+                    {h.text}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 甜柿三大特色 -->
+    <section class="py-16 bg-amber-50 border-b border-amber-100">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-amber-100">
+          <div class="text-4xl mb-4">🍊</div>
+          <h3 class="text-xl font-black text-slate-900 mb-3">可以連皮吃</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            清洗後即可連皮享用，口感爽脆，比市面上的甜柿更甜。
+          </p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-amber-100">
+          <div class="text-4xl mb-4">✅</div>
+          <h3 class="text-xl font-black text-slate-900 mb-3">不甜可以退貨</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            阿義老闆對自家甜柿有信心，保證甜、不甜退錢。
+          </p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-amber-100">
+          <div class="text-4xl mb-4">⛰️</div>
+          <h3 class="text-xl font-black text-slate-900 mb-3">高海拔產地</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            拉拉山上巴陵，日夜溫差大，甜度與香氣表現更出色。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 果園實景 -->
+    <section class="py-20 bg-slate-900">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-black text-white">果園實景</h2>
+          <p class="text-white/50 mt-3 text-sm">
+            甜柿採收後分級包裝，現場採果則由阿義老闆帶您入園挑選
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {
+            [
+              { img: persimmonBig, cap: "特大 6 粒裝｜單顆 9~10 兩" },
+              { img: persimmonMid, cap: "特選 5 粒裝｜單顆 7~8 兩" },
+              { img: persimmonShare, cap: "分享 8 粒裝｜單顆約 4 兩" },
+            ].map((g) => (
+              <figure class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                <Image
+                  src={g.img}
+                  alt={g.cap}
+                  class="w-full h-64 object-cover"
+                />
+                <figcaption class="bg-white/5 text-white/70 text-sm px-4 py-3 text-center">
+                  {g.cap}
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 三步驟 -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl lg:text-4xl font-black text-slate-900">
+            簡單三步驟，展開採果行程
+          </h2>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div
+            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group"
+          >
+            <div
+              class="text-6xl font-black text-slate-100 absolute -top-2 -right-2 transition-colors group-hover:text-amber-50"
+            >
+              01
+            </div>
+            <h3 class="text-xl font-black text-slate-900 relative z-10 mb-4">
+              電話確認天氣
+            </h3>
+            <p class="text-slate-600 relative z-10 leading-relaxed">
+              山區天氣多變，出發當日請先致電 <b>0975-167-080</b
+              >。若當天下雨為顧及安全將不開放採果。
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group"
+          >
+            <div
+              class="text-6xl font-black text-slate-100 absolute -top-2 -right-2 transition-colors group-hover:text-amber-50"
+            >
+              02
+            </div>
+            <h3 class="text-xl font-black text-slate-900 relative z-10 mb-4">
+              導航至停車場
+            </h3>
+            <p class="text-slate-600 relative z-10 leading-relaxed">
+              導航請設定「<b>拉拉山水蜜桃達人農場</b
+              >」，我們位於上巴陵地區。請依照指示停妥車輛。
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 relative overflow-hidden group"
+          >
+            <div
+              class="text-6xl font-black text-slate-100 absolute -top-2 -right-2 transition-colors group-hover:text-amber-50"
+            >
+              03
+            </div>
+            <h3 class="text-xl font-black text-slate-900 relative z-10 mb-4">
+              向阿義報到
+            </h3>
+            <p class="text-slate-600 relative z-10 leading-relaxed">
+              停好車後步行約 10 公尺即可抵達農場。請認明「水蜜桃達人農場」找 <b
+                >阿義老闆</b
+              > 領取採果籃。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 費用與計價 -->
+    <section class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-6">
+        <div
+          class="bg-slate-900 rounded-[3rem] p-10 lg:p-16 text-white text-center shadow-2xl"
+        >
+          <h2 class="text-3xl font-black mb-8">費用與計價</h2>
+          <div class="grid md:grid-cols-2 gap-10">
+            <div
+              class="border-b md:border-b-0 md:border-r border-white/10 pb-10 md:pb-0 md:pr-10"
+            >
+              <div class="text-amber-400 text-3xl font-black mb-4">
+                請來電洽詢
+              </div>
+              <h3 class="text-xl font-bold mb-3">入園清潔費</h3>
+              <p class="text-white/60 text-sm">
+                甜柿採果之入園收費依當季公告為準<br />請來電 0975-167-080 或加 LINE
+                確認
+              </p>
+            </div>
+            <div>
+              <div class="text-emerald-400 text-3xl font-black mb-4">
+                現場秤重
+              </div>
+              <h3 class="text-xl font-bold mb-3">採果秤重 (斤)</h3>
+              <p class="text-white/60 text-sm">
+                親手採摘之甜柿現場秤重計價<br />當季單價請來電或 LINE 洽詢
+              </p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-10">
+            ※ 今年甜柿產量較少，建議提早預約；想在中秋送禮先出貨，也可先留言排單。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 交通資訊 -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-3xl font-black text-slate-900 mb-6">如何前往</h2>
+          <ul class="space-y-4 text-slate-600">
+            <li>
+              <b class="text-slate-900">導航設定</b
+              >：拉拉山水蜜桃達人農場（桃園市復興區上巴陵）
+            </li>
+            <li>
+              <b class="text-slate-900">抵達後</b
+              >：請致電 0975-167-080 向阿義老闆報到
+            </li>
+            <li>
+              <b class="text-slate-900">穿著</b
+              >：運動鞋或防滑平底鞋，山區果園地面不平
+            </li>
+            <li>
+              <b class="text-slate-900">提醒</b
+              >：山區收訊不穩，建議先下載離線地圖
+            </li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href="tel:+886975167080"
+              class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-3 rounded-full font-bold transition"
+            >
+              📞 0975-167-080
+            </a>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=拉拉山水蜜桃達人農場"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white border border-slate-200 hover:border-slate-400 text-slate-900 px-6 py-3 rounded-full font-bold transition"
+            >
+              📍 Google 導航
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+          <h3 class="text-xl font-black text-slate-900 mb-6">
+            採果常見問題
+          </h3>
+          <div class="space-y-5">
+            {
+              faqs.map((f) => (
+                <div class="pb-5 border-b border-slate-100 last:border-0 last:pb-0">
+                  <p class="font-bold text-slate-900 mb-2">Q：{f.q}</p>
+                  <p class="text-slate-600 text-sm leading-relaxed">A：{f.a}</p>
+                </div>
+              ))
+            }
+          </div>
+          <a
+            href="/faq"
+            class="inline-block mt-6 text-amber-600 font-bold hover:underline text-sm"
+            >看更多常見問題 →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- 同場推薦：甜柿宅配 -->
+    <section class="py-20 bg-amber-500">
+      <div class="max-w-5xl mx-auto px-6 text-center text-white">
+        <h2 class="text-3xl lg:text-4xl font-black mb-4">
+          沒辦法上山？甜柿宅配到府 🍊
+        </h2>
+        <p class="text-white/90 mb-10">
+          專業甜柿 5 種規格，可以連皮吃、比市面上甜、不甜可以退貨。<br />
+          1 盒運費 150 元，6 盒免運（同一收件地址）。
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a
+            href="/products"
+            class="bg-white text-amber-600 px-10 py-4 rounded-full font-black transition shadow-xl hover:bg-amber-50"
+          >
+            🍊 查看甜柿商品
+          </a>
+          <a
+            href="https://line.me/ti/p/~0975167080"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-black transition shadow-xl"
+          >
+            💬 LINE 訂購
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

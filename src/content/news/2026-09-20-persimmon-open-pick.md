@@ -71,6 +71,8 @@ order: 0
 
 甜柿產季同步開放果園採果，歡迎團體、散客預約。
 
+<a href="/persimmon-picking" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-3 rounded-full transition shadow-lg text-lg">🍊 看甜柿採果資訊與預約 →</a>
+
 - **預約方式**：來電 0975-167-080 或加入 LINE 洽詢
 - **入園與計價**：依當季公告為準，請來電或 LINE 確認
 - **雨天不開放**：為顧及斜坡安全，出發前請先致電確認當日開放狀況
