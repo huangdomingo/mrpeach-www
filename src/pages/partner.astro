@@ -1,0 +1,217 @@
+---
+// src/pages/partner.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/products/farm-owner-customer-peach-handoff-orchard.jpg";
+
+const pageTitle = "頂級水蜜桃供應夥伴募集｜電商・團購・批發・水果行｜拉拉山水蜜桃達人農場";
+const pageDescription =
+  "拉拉山水蜜桃達人農場誠徵合作夥伴：電商、團購主、批發商、水果行。供貨期間 5/20–8/30，職人採摘、雙重篩選、產地直送，損壞包賠、專業包裝、專屬窗口 24 小時內處理。批發價與代發服務，免囤貨壓力。";
+
+const advantages = [
+  {
+    icon: "🤲",
+    tag: "職人採摘",
+    title: "最佳熟度，手工採收",
+    body: "堅持在果實最佳熟度（約 7–8 分熟）逐顆手工採收，兼顧甜度與耐運性，不是搶早採的青澀貨。",
+  },
+  {
+    icon: "⚖️",
+    tag: "雙重篩選",
+    title: "機器分級 × 外觀精選",
+    body: "每顆水蜜桃先經分級機重量檢測，再由人工外觀精選，確保果實飽滿、重量符合規定。",
+  },
+  {
+    icon: "🚚",
+    tag: "產地直送",
+    title: "縮短供應鏈",
+    body: "從枝頭到消費者餐桌，減少中間轉手，保留第一手的鮮甜與香氣。",
+  },
+];
+
+const services = [
+  {
+    icon: "🛡️",
+    tag: "損壞包賠",
+    title: "補發或退款，免你處理糾紛",
+    body: "水蜜桃極為嬌貴，若運輸過程發生碰撞損壞，我們提供完整的補發或退款機制，讓您免於處理客訴糾紛的壓力。",
+  },
+  {
+    icon: "📦",
+    tag: "專業包裝",
+    title: "加厚防撞 × 冷鏈建議",
+    body: "使用加厚防撞包材，並提供冷鏈物流建議，最大程度降低貨損率。",
+  },
+  {
+    icon: "⏱️",
+    tag: "即時應對",
+    title: "專屬窗口，24 小時內處理",
+    body: "設有專屬窗口對接，異常狀況 24 小時內快速處理，不用您一句一句轉達。",
+  },
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- HERO -->
+  <section class="relative bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 py-16 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span
+          class="inline-block bg-white text-pink-600 text-xs font-bold tracking-[0.18em] px-4 py-2 rounded-full shadow-sm mb-6"
+          >B2B 合作夥伴募集</span
+        >
+        <h1 class="text-4xl lg:text-5xl font-black text-slate-900 leading-tight mb-4">
+          產地直送的<span class="text-pink-600">極致粉嫩</span>
+        </h1>
+        <p class="text-xl lg:text-2xl font-semibold text-slate-600 tracking-wide mb-8">
+          頂級水蜜桃供應夥伴募集
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-6">
+          您好！我們是來自產地的水蜜桃生產團隊。在桃實成熟的季節，我們正在尋找認同「<strong
+            >品質至上</strong
+          >」價值的電商夥伴、團購主、批發商、水果行，將這份大地的鮮甜，精準送達每一位饕客手中。
+        </p>
+        <div
+          class="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold px-6 py-3 rounded-full shadow-lg shadow-emerald-600/20 mb-8"
+        >
+          🍑 供貨期間　5/20 ─ 8/30
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="https://line.me/ti/p/~0975167080"
+            class="inline-flex items-center gap-2 bg-[#06C755] hover:bg-[#05B34C] text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-emerald-500/30 transition"
+            >💬 加入 LINE 好友</a
+          >
+          <a
+            href="tel:+886975167080"
+            class="inline-flex items-center gap-2 bg-white border-2 border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-bold px-8 py-4 rounded-full transition"
+            >📞 0975-167-080</a
+          >
+        </div>
+      </div>
+      <div class="relative">
+        <Image
+          src={heroImage}
+          alt="水蜜桃達人農場與合作客戶在果園交貨"
+          class="w-full h-auto rounded-3xl shadow-2xl"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 為什麼選擇我們 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl font-bold text-slate-900">
+          為什麼選擇<span class="text-pink-600">我們的水蜜桃</span>？
+        </h2>
+        <p class="text-slate-500 mt-3">我們深知，銷售最在意的是貨源品質穩定</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          advantages.map((item) => (
+            <div class="bg-white border border-pink-100 rounded-2xl p-7 hover:shadow-xl hover:-translate-y-1 transition">
+              <div class="text-3xl mb-4">{item.icon}</div>
+              <span class="inline-block bg-pink-50 text-pink-600 text-xs font-bold px-3 py-1 rounded-md mb-3 tracking-wide">
+                {item.tag}
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 售後服務 -->
+  <section class="py-20 bg-emerald-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl font-bold text-slate-900">
+          完善的<span class="text-emerald-700">售後服務</span>
+        </h2>
+        <p class="text-slate-600 mt-3">電商 · 團購主 · 水果行 · 批發商　最強後盾</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          services.map((item) => (
+            <div class="bg-white border border-emerald-100 rounded-2xl p-7 hover:shadow-xl hover:-translate-y-1 transition">
+              <div class="text-3xl mb-4">{item.icon}</div>
+              <span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-md mb-3 tracking-wide">
+                {item.tag}
+              </span>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作方案 -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-slate-900">合作<span class="text-pink-600">方案</span></h2>
+        <p class="text-slate-500 mt-3">高品質的果實，是口碑的基礎</p>
+      </div>
+      <div
+        class="bg-gradient-to-br from-pink-50 to-rose-50 border border-dashed border-pink-300 rounded-2xl p-10 text-center"
+      >
+        <p class="text-lg text-slate-700 leading-relaxed max-w-2xl mx-auto">
+          我們提供<strong class="text-pink-600">靈活的批發價</strong>與<strong
+            class="text-pink-600">代發服務</strong
+          >，讓您<strong class="text-pink-600">無需囤貨壓力</strong>，專注於品牌行銷與客戶服務。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 引言 -->
+  <section class="py-16 bg-slate-900 text-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <blockquote class="text-2xl lg:text-3xl font-bold leading-relaxed">
+        「高品質的果實，是<span class="text-pink-400">口碑的基礎</span>；<br />
+        負責任的售後，是<span class="text-pink-400">長久的保證</span>。」
+      </blockquote>
+      <p class="text-slate-400 text-sm mt-5 tracking-widest">—— 拉拉山水蜜桃達人農場</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-6">
+        誠摯邀請您<span class="text-pink-600">到產地實地考察</span>
+      </h2>
+      <p class="text-slate-700 leading-relaxed mb-8">
+        若您對高品質農產品有興趣，歡迎回覆此訊息或撥打電話聯繫。 我們誠摯邀請您到產地實地考察，親自品嚐這份大自然的禮物。
+      </p>
+      <div class="bg-pink-50 border-l-4 border-pink-600 rounded-lg p-6 text-left mb-10">
+        <p class="font-bold text-slate-900 mb-2">
+          如果您是剛起步、擔心量不多但想要嘗試水蜜桃……
+        </p>
+        <p class="text-slate-700 leading-relaxed">
+          找我們吧，不用猶豫。一起合作，將經驗跟您分享，快速進入這個領域，一起成功！
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a
+          href="https://line.me/ti/p/~0975167080"
+          class="inline-flex items-center gap-2 bg-[#06C755] hover:bg-[#05B34C] text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-emerald-500/30 transition"
+          >💬 加入 LINE 好友</a
+        >
+        <a
+          href="tel:+886975167080"
+          class="inline-flex items-center gap-2 bg-white border-2 border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-bold px-8 py-4 rounded-full transition"
+          >📞 0975-167-080</a
+        >
+      </div>
+      <p class="text-sm text-slate-500 mt-6">加入 LINE 或電話與我們服務團隊討論，會更輕鬆喔</p>
+    </div>
+  </section>
+</BaseLayout>
