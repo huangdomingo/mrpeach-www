@@ -3,9 +3,16 @@ title: "〈採收結束才是開始：修剪、嫁接，和十多甲的盤算〉
 pubDate: 2026-11-16
 description: "水蜜桃採完，果園看起來安靜了，其實是另一段工作的開始。修剪要分批、嫁接要挑時機、苗圃要育苗——十多甲地不可能同一天動手。早生品種落葉早，現在就得先動；晚生品種還在分化花芽，得再等一等。"
 author: "阿義"
-image: "../../assets/products/pruning-grafting-collage-a-2026-11-16.jpg"
+image: "../../assets/products/pruning-grafting-strip-2026-11-16.jpg"
 tags: ["修剪", "嫁接", "苗圃", "冬季管理", "草生栽培"]
 ---
+
+<div style="margin:0 0 28px">
+  <a href="/images/pruning-grafting/strip-full.jpg" target="_blank" rel="noopener">
+    <img src="/images/pruning-grafting/strip-display.jpg" alt="拉拉山果園冬季作業四景：修剪後的果樹、山谷雲海、裸根苗、待嫁接的砧木" style="max-width:100%;height:auto;border-radius:10px" loading="eager" />
+  </a>
+  <div style="font-size:13px;color:#777;margin-top:8px;text-align:center">左起：修剪後的果園、山谷雲海、整捆裸根苗、待嫁接的砧木。（點圖可看 1080P 大圖）</div>
+</div>
 
 最後一批桃子出貨之後，很多人以為果園就休息了。
 
